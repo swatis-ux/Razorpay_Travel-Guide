@@ -1,1 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Travel Planner That Brings the Pieces Together — Razorpay Design Challenge</title>
+<meta name="description" content="A human-led, AI-assisted design case study and interactive prototype: an AI travel planner for MakeMyTrip that brings destination, transport, stay and activities together into one editable, map-led itinerary.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27%3E%3Cpath d=%27M20 3 L37 20 L20 37 L3 20 Z%27 fill=%27%23FF5C34%27 stroke=%27%2326211D%27 stroke-width=%272%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,300..800;1,300..800&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,200..800,0..100,0..1;1,9..144,200..800,0..100,0..1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Back to the cover">
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3 L37 20 L20 37 L3 20 Z" fill="#FF5C34" stroke="#26211D" stroke-width="2"/><path d="M9 24 Q15 14 20 20 T31 16" fill="none" stroke="#26211D" stroke-width="2" stroke-dasharray="3 3" stroke-linecap="round"/></svg>
+      <span><b>Bringing the pieces together</b><span>an AI travel planner · case study</span></span>
+    </a>
+    <nav class="stage-nav" aria-label="Double Diamond stages">
+      <div class="stage-tabs" role="tablist" aria-label="Case study stages">
+        <button class="stage-tab" role="tab" id="tab-discover" aria-controls="panel-discover" aria-selected="true" data-stage="discover"><span class="n">01</span>Discover</button>
+        <button class="stage-tab" role="tab" id="tab-define" aria-controls="panel-define" aria-selected="false" tabindex="-1" data-stage="define"><span class="n">02</span>Define</button>
+        <button class="stage-tab" role="tab" id="tab-develop" aria-controls="panel-develop" aria-selected="false" tabindex="-1" data-stage="develop"><span class="n">03</span>Develop</button>
+        <button class="stage-tab" role="tab" id="tab-deliver" aria-controls="panel-deliver" aria-selected="false" tabindex="-1" data-stage="deliver"><span class="n">04</span>Deliver</button>
+      </div>
+    </nav>
+    <a class="btn btn-primary btn-sm header-cta" href="#prototype" data-go-prototype><span aria-hidden="true">◆</span><span class="txt">Open the prototype</span></a>
+  </div>
+  <div class="progress-rail" aria-hidden="true"><i id="progressFill"></i></div>
+</header>
+<main id="main"><span id="top"></span>
 
+<section class="cover" aria-labelledby="cover-title">
+  <div class="wrap">
+    <div class="cover-grid">
+      <div>
+        <span class="kicker">Razorpay Design × NID · Design Builder Intern challenge</span>
+        <h1 id="cover-title">A travel planner that brings the <em>pieces</em> together.</h1>
+        <div class="meta"><span><b>For</b> MakeMyTrip (concept)</span><span><b>Process</b> <span class="tip"><button class="tip-btn" type="button" aria-describedby="tip-dd">Double Diamond</button><span class="tip-body" role="tooltip" id="tip-dd">Widen, then narrow, the problem (Discover, Define); widen, then narrow, the solution (Develop, Deliver).</span></span></span><span><b>Made</b> human-led, AI-assisted</span><span><b>Version</b> V04 · Nov 2026</span></div>
+      </div>
+      <ol class="cover-index" aria-label="What this case study shows">
+        <li><span class="n">i</span><div><b>How I think</b><span>Observations, research, reasoning and decisions — Discover &amp; Define.</span></div></li>
+        <li><span class="n">ii</span><div><b>How I use AI</b><span>As a partner for brainstorming, exploration, code and implementation — marked throughout.</span></div></li>
+        <li><span class="n">iii</span><div><b>What I built</b><span>A working, map-led travel-planning prototype — Deliver.</span></div></li>
+      </ol>
+    </div>
+    <figure class="cover-art">
+      <img src="assets/illustrations/hero-journey.svg" alt="Hand-painted journey from Jaipur's Hawa Mahal, over a train bridge where a group reads a map, to the coffee hills and waterfall of Coorg, joined by a dashed route." width="1400" height="540">
+      <div class="cover-ann a1"><svg viewBox="0 0 46 40" aria-hidden="true"><path d="M4 5 C 18 6, 31 14, 37 31" fill="none" stroke="#26211D" stroke-width="1.4" stroke-linecap="round"/><path d="M30 28 L37 32 L40 24" fill="none" stroke="#26211D" stroke-width="1.4" stroke-linecap="round"/></svg><span>where the research began — a small group trip, Delhi → Jaipur</span></div>
+      <div class="cover-ann a2"><svg viewBox="0 0 46 40" aria-hidden="true"><path d="M4 5 C 18 6, 31 14, 37 31" fill="none" stroke="#26211D" stroke-width="1.4" stroke-linecap="round"/><path d="M30 28 L37 32 L40 24" fill="none" stroke="#26211D" stroke-width="1.4" stroke-linecap="round"/></svg><span>a group, a map, too many tabs</span></div>
+      <div class="cover-ann a3"><svg viewBox="0 0 46 40" aria-hidden="true"><path d="M42 5 C 28 6, 15 14, 9 31" fill="none" stroke="#26211D" stroke-width="1.4" stroke-linecap="round"/><path d="M16 28 L9 32 L6 24" fill="none" stroke="#26211D" stroke-width="1.4" stroke-linecap="round"/></svg><span>where the prototype goes — a weekend in Coorg</span></div>
+    </figure>
+  </div>
+</section>
+
+<section class="ownership-strip" aria-labelledby="own-title">
+  <div class="wrap own-grid">
+    <div>
+      <span class="kicker">Authorship</span>
+      <h2 id="own-title" style="font-size:clamp(1.8rem,1.3rem+1.6vw,2.6rem);margin-top:10px">Human-led, <em>AI-assisted.</em></h2>
+      <p class="small">The problem, the travel-agent inspiration, the personas, the conversational approach, the editable itinerary and the map-led interface are my decisions. AI was a collaborator: it helped me explore, challenge, structure and build. <button class="link-btn" data-jump="deliver" data-target="l-reflection">Read the reflection →</button></p>
+    </div>
+    <table class="own-table">
+      <thead><tr><th scope="col">Stage</th><th scope="col">My contribution</th><th scope="col">AI's contribution</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Discover</th><td class="me">Identified the problem and chose what to investigate</td><td class="ai">Helped structure the brief, explore personas and prepare research questions</td></tr>
+        <tr><th scope="row">Define</th><td class="me">Interpreted the observations; set the design opportunity</td><td class="ai">Helped cluster findings, challenge assumptions, try other framings</td></tr>
+        <tr><th scope="row">Develop</th><td class="me">Proposed conversational planning; chose the hybrid concept and the map-led interface</td><td class="ai">Brainstormed interaction options and alternatives; surfaced edge cases</td></tr>
+        <tr><th scope="row">Deliver</th><td class="me">Directed the experience; approved every design decision</td><td class="ai">Generated and debugged the HTML, CSS and JavaScript, interaction logic, prototype data and microcopy</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="diamond-wrap" aria-label="Double Diamond navigation">
+  <div class="wrap">
+    <svg class="diamond-svg" viewBox="0 0 1000 300" id="diamondSvg" role="group" aria-label="Double Diamond — select a stage">
+      <defs><filter id="dink"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter><filter id="dwash"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="9"/><feDisplacementMap in="SourceGraphic" scale="14"/></filter></defs>
+      <g class="dz" data-go="discover" role="button" tabindex="0" aria-label="Discover — what is the problem, who has it, what did I learn?"><path class="shape" d="M20,150 L255,30 L255,270 Z" fill="#D7EFFF" filter="url(#dwash)"/><path class="outline" d="M20,150 L255,30 L255,270 Z" fill="none" stroke="#26211D" stroke-width="1.6" filter="url(#dink)"/><text x="148" y="148" text-anchor="middle" class="t-stage">Discover</text><text x="148" y="170" text-anchor="middle" class="t-q">what's the problem?</text></g>
+      <g class="dz" data-go="define" role="button" tabindex="0" aria-label="Define — what opportunity am I solving, and why?"><path class="shape" d="M255,30 L490,150 L255,270 Z" fill="#AEB8A0" filter="url(#dwash)"/><path class="outline" d="M255,30 L490,150 L255,270 Z" fill="none" stroke="#26211D" stroke-width="1.6" filter="url(#dink)"/><text x="355" y="148" text-anchor="middle" class="t-stage">Define</text><text x="355" y="170" text-anchor="middle" class="t-q">which opportunity?</text></g>
+      <g class="dz" data-go="develop" role="button" tabindex="0" aria-label="Develop — how did I explore and choose the solution?"><path class="shape" d="M510,150 L745,30 L745,270 Z" fill="#E8C547" filter="url(#dwash)"/><path class="outline" d="M510,150 L745,30 L745,270 Z" fill="none" stroke="#26211D" stroke-width="1.6" filter="url(#dink)"/><text x="645" y="148" text-anchor="middle" class="t-stage">Develop</text><text x="645" y="170" text-anchor="middle" class="t-q">how might it work?</text></g>
+      <g class="dz" data-go="deliver" role="button" tabindex="0" aria-label="Deliver — how does it work, and what next?"><path class="shape" d="M745,30 L980,150 L745,270 Z" fill="#FF5C34" filter="url(#dwash)"/><path class="outline" d="M745,30 L980,150 L745,270 Z" fill="none" stroke="#26211D" stroke-width="1.6" filter="url(#dink)"/><text x="845" y="148" text-anchor="middle" class="t-stage">Deliver</text><text x="845" y="170" text-anchor="middle" class="t-q">what did I build?</text></g>
+      <circle cx="500" cy="150" r="7" fill="#26211D"/>
+      <text x="500" y="296" text-anchor="middle" class="t-ann">the problem statement &amp; "How might we…"</text>
+      <path d="M500,276 L500,162" stroke="#26211D" stroke-width="1.2" stroke-dasharray="3 4"/>
+      <text x="255" y="16" text-anchor="middle" class="t-ann">problem space</text><text x="745" y="16" text-anchor="middle" class="t-ann">solution space</text>
+    </svg>
+  </div>
+</section>
+
+<div class="wrap" id="stages">
+
+<section class="stage-panel" role="tabpanel" id="panel-discover" aria-labelledby="tab-discover" data-stage="discover" tabindex="-1">
+  <div class="stage-open">
+    <div><span class="num">01 — Discover</span><h1>Understanding the problem</h1><p class="question">What is the problem, <b>who experiences it</b>, and what did I learn?</p></div>
+    <img src="assets/illustrations/spot-discover.svg" alt="" width="320" height="220">
+  </div>
+  <div class="stage-layout">
+    <nav class="toc" aria-label="Discover sections"></nav>
+    <div class="stage-content"><div class="toc-mobile"></div>
+
+      <article class="block" id="d-hook">
+        <header><span class="kicker">The hook</span><h2>Planning a trip has become a trip in itself.</h2></header>
+        <p class="lede wide">Finding a destination is one task. Booking transport is another. Comparing stays, checking reviews, choosing what to do, estimating travel time and getting everyone to agree are separate tasks again — each on a different site, chat or call.</p>
+        <div class="fragments" aria-label="The pieces of a trip and where they live today"><div class="frag"><img src="assets/illustrations/thumb-viewpoint.svg" alt="" width="240" height="150"><b>Destination</b><span>search, reels, friends</span></div><div class="frag"><img src="assets/illustrations/thumb-bus.svg" alt="" width="240" height="150"><b>Transport</b><span>booking sites</span></div><div class="frag"><img src="assets/illustrations/thumb-homestay.svg" alt="" width="240" height="150"><b>Stay</b><span>several platforms</span></div><div class="frag"><img src="assets/illustrations/thumb-fort.svg" alt="" width="240" height="150"><b>Activities</b><span>blogs &amp; tips</span></div><div class="frag"><img src="assets/illustrations/thumb-market.svg" alt="" width="240" height="150"><b>Itinerary</b><span>notes &amp; memory</span></div><div class="frag"><img src="assets/illustrations/persona-group.svg" alt="" width="240" height="150"><b>Group</b><span>calls &amp; chats</span></div><div class="frag"><img src="assets/illustrations/thumb-cafe.svg" alt="" width="240" height="150"><b>Decision</b><span>long discussions</span></div></div>
+        <div class="frag-line" aria-hidden="true"></div>
+        <p class="pull">What if there were someone who could <em>bring all those pieces together?</em></p>
+        <p>Someone who understood what you wanted, considered your constraints, curated the options and helped shape the trip — without taking the final decision away from you.</p>
+      </article>
+
+      <article class="block" id="d-brief">
+        <header><span class="kicker">The brief</span><h2>What Razorpay asked for</h2></header>
+        <div class="split">
+          <p class="lede">Design an AI-powered experience that helps people plan and book a multi-day trip through conversation and intelligent suggestions — beyond today's search-and-filter model.</p>
+          <div>
+            <p>Travel apps make people search flights, stays and activities separately, compare manually and stitch the plan together themselves. The brief asks for an agent that understands preferences, makes multi-step decisions across those pieces, presents one cohesive plan and lets the traveller review, tweak and approve it — designed for Cleartrip or MakeMyTrip, with simulated data allowed, in 8–12 hours.</p>
+            <p class="small"><b>Deliverables:</b> one interactive journey · a research summary from three relevant users · a short presentation covering directions, AI integration, decisions and trade-offs.</p>
+          </div>
+        </div>
+        <h3 class="sub">Four design considerations — the spine of this project</h3>
+        <div class="considerations">
+          <div><span class="L">A</span><b>Conversation &amp; input</b><p>How do people express what they want — and how does AI clarify without feeling like a form?</p></div>
+          <div><span class="L">B</span><b>Planning &amp; transparency</b><p>How does the agent show what it considered and why it recommends something?</p></div>
+          <div><span class="L">C</span><b>Review &amp; control</b><p>How do people swap pieces and override suggestions without starting over?</p></div>
+          <div><span class="L">D</span><b>Edge cases</b><p>What happens when budget, dates or availability don't fit — or plans change?</p></div>
+        </div>
+        <details class="more"><summary>The role and what reviewers look for</summary><div class="more-body">
+          <p class="small">The Design Builder Intern owns the connection between an idea and a working experience — using design thinking, AI and code. Reviewers look for <b>craft</b> (details that make something work, not just look good), <b>bringing ideas to life</b> (a working prototype need not be production grade), <b>building with AI</b> (what it helped with, what was rejected, where human judgement improved it) and <b>systems thinking</b>. "Show the journey" — how you think, what you tried, what you'd change.</p>
+          <p class="small">Brownie points: creative, effective use of AI; thoughtful micro-interactions; well-handled empty, loading and error states. Out of scope: sign-up, payments, loyalty, live APIs, real bookings.</p>
+        </div></details>
+      </article>
+
+      <article class="block" id="d-thenvsnow">
+        <header><span class="kicker">The inspiration</span><h2>Then, now — and what could come next</h2>
+          <p>Travellers used to explain their needs to a travel agent, who used knowledge of transport, stays and local experiences to curate a complete proposal they could discuss, negotiate and change. Self-service platforms gave us choice — and handed us all of that work.</p></header>
+        <div class="triptych">
+          <div><figure><img src="assets/illustrations/plan-then.svg" alt="Illustration: a traveller at a travel agent's desk with brochures." width="300" height="200"></figure><span class="era">before</span><h3>Assisted planning</h3><ol><li>Explain what you want</li><li>The agent clarifies and curates</li><li>Discuss, negotiate, approve</li></ol></div>
+          <div><figure><img src="assets/illustrations/plan-now.svg" alt="Illustration: a laptop with many open tabs and a puzzled traveller." width="300" height="200"></figure><span class="era">now</span><h3>Self-service planning</h3><ol><li>Search each piece separately</li><li>Filter, compare, revisit</li><li>Assemble it all yourself</li></ol></div>
+          <div><figure><img src="assets/illustrations/plan-next.svg" alt="Illustration: a chat bubble, an itinerary card and a dotted route to a pin." width="300" height="200"></figure><span class="era">proposed</span><h3>AI-assisted planning</h3><ol><li>Describe the trip in your words</li><li>AI connects and explains the pieces</li><li>You edit, choose and approve</li></ol></div>
+        </div>
+        <p style="margin-top:var(--s6)" class="lede wide">The idea: bring back the feeling of being helped by a knowledgeable planner — listening, curating, explaining — with the speed and flexibility of a digital tool.</p>
+        <details class="more"><summary>What to keep from the human planner, what AI can improve</summary><div class="more-body cols-2">
+          <div><h4>Keep</h4><ul class="small"><li>Listening and understanding context</li><li>Curating a few relevant options</li><li>Connecting transport, stay and local experiences</li><li>Explaining alternatives; letting the traveller negotiate</li></ul></div>
+          <div><h4>Improve</h4><ul class="small"><li>Speed; handling many constraints at once</li><li>Updating connected pieces after a change</li><li>Making alternatives easy to compare</li><li>Always available</li></ul><p class="tiny-note">Conceptual inspiration — not a claim that all travellers used agents, or that agents' roles were uniform.</p></div>
+        </div></details>
+        <aside class="ai-note" aria-label="AI collaboration note">
+  <div class="an-head"><span class="an-tag">With AI · reconstructed example</span><span class="an-q">Exploring the travel-agent model</span></div>
+  <div class="an-flow">
+    <div class="me"><h5>My question</h5>What made assisted planning valuable — could a digital tool bring that back?</div>
+    <div class="ai"><h5>AI exploration</h5>A then-versus-now comparison of the agent's roles, and where the analogy breaks down.</div>
+    <div class="me"><h5>My evaluation</h5>Took forward: the retain / improve lists<br>Changed: added a caveat about historical framing<br>Rejected: a nostalgic "agents were better" story</div>
+    <div class="me"><h5>Final decision</h5><b>Keep the inspiration — it was mine — as a concept, not a history claim.</b></div>
+  </div>
+</aside>
+      </article>
+
+      <article class="block" id="d-personas">
+        <header><span class="kicker">Who has the problem</span><h2>Four personas, four kinds of constraint</h2>
+          <p>All four are archetypes supplied by the brief. The constraint levels are my reading of their descriptions — <span class="lbl hyp">hypotheses, not measurements</span>.</p></header>
+        <div class="personas4">
+          <figure class="sel" data-persona="a"><img src="assets/illustrations/persona-weekend.svg" alt="" width="260" height="200"><span class="stamp" style="font-size:.6rem">secondary</span><figcaption style="font-style:normal"><span class="p-l">A</span><h3>Weekend Escaper</h3>24–30 · short trips, tight budget, fixed dates</figcaption></figure>
+          <figure data-persona="b"><img src="assets/illustrations/persona-family.svg" alt="" width="260" height="200"><figcaption style="font-style:normal"><span class="p-l">B</span><h3>Family Trip Planner</h3>32–42 · children and elders, needs certainty</figcaption></figure>
+          <figure class="sel" data-persona="c"><img src="assets/illustrations/persona-group.svg" alt="" width="260" height="200"><span class="stamp" style="font-size:.6rem">primary</span><figcaption style="font-style:normal"><span class="p-l">C</span><h3>Group Coordinator</h3>25–35 · 4–8 friends, different budgets and dates</figcaption></figure>
+          <figure data-persona="d"><img src="assets/illustrations/persona-business.svg" alt="" width="260" height="200"><figcaption style="font-style:normal"><span class="p-l">D</span><h3>Business + Leisure</h3>30–45 · fixed work days, time-poor</figcaption></figure>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px" role="group" aria-label="Highlight personas in the matrix">
+          <button class="chip" aria-pressed="true" data-matrix-filter="all">All four</button>
+          <button class="chip" aria-pressed="false" data-matrix-filter="selected">My selection (A + C)</button>
+        </div>
+        <div class="table-scroll">
+          <table class="table" id="personaMatrix">
+            <caption class="sr-only">Qualitative constraint levels for the four personas — hypotheses, not measurements.</caption>
+            <thead><tr><th scope="col">Constraint</th><th scope="col" data-col="a">A · Weekend</th><th scope="col" data-col="b">B · Family</th><th scope="col" data-col="c">C · Group</th><th scope="col" data-col="d">D · Business</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Time pressure</th><td data-col="a" data-lvl="High"></td><td data-col="b" data-lvl="Medium"></td><td data-col="c" data-lvl="Medium–high"></td><td data-col="d" data-lvl="High"></td></tr>
+              <tr><th scope="row">Budget sensitivity</th><td data-col="a" data-lvl="High"></td><td data-col="b" data-lvl="Medium"></td><td data-col="c" data-lvl="High / variable"></td><td data-col="d" data-lvl="Low–medium"></td></tr>
+              <tr><th scope="row">Number of preferences</th><td data-col="a" data-lvl="Low–medium"></td><td data-col="b" data-lvl="High"></td><td data-col="c" data-lvl="Very high"></td><td data-col="d" data-lvl="Low–medium"></td></tr>
+              <tr><th scope="row">Coordination effort</th><td data-col="a" data-lvl="Low"></td><td data-col="b" data-lvl="High"></td><td data-col="c" data-lvl="Very high"></td><td data-col="d" data-lvl="Low"></td></tr>
+              <tr><th scope="row">Schedule flexibility</th><td data-col="a" data-lvl="Low"></td><td data-col="b" data-lvl="Low"></td><td data-col="c" data-lvl="Low–medium"></td><td data-col="d" data-lvl="Low"></td></tr>
+              <tr><th scope="row">Need for certainty</th><td data-col="a" data-lvl="Medium"></td><td data-col="b" data-lvl="Very high"></td><td data-col="c" data-lvl="Medium"></td><td data-col="d" data-lvl="High"></td></tr>
+              <tr><th scope="row">Decision complexity</th><td data-col="a" data-lvl="Medium"></td><td data-col="b" data-lvl="High"></td><td data-col="c" data-lvl="Very high"></td><td data-col="d" data-lvl="Medium"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="block" id="d-selection">
+        <header><span class="kicker">My selection</span><h2>The friend who plans, and the weekend escape</h2>
+          <p>I chose these two because I know them — they are the travel patterns of my age group and peer circle, where friends live in different cities with different budgets, dates and travel styles. One is a <b>collective</b> constraint problem; the other an <b>individual</b> one. Both are about making the most of limited time.</p></header>
+        <div class="profile">
+          <figure class="taped"><img src="assets/illustrations/persona-group.svg" alt="Illustration of a group of friends looking at a map." width="260" height="200"></figure>
+          <div><span class="role">Primary persona</span><h3>The Group Coordinator</h3><p class="quote-b">Gets six friends to agree on one trip — and carries the planning load.</p>
+            <div class="gcno">
+              <div><h4>Goals</h4><ul><li>A place that works for everyone</li><li>Agreement without endless back-and-forth</li><li>Not be solely responsible</li></ul></div>
+              <div><h4>Constraints</h4><ul><li>Different budgets and dates</li><li>Different styles and energy</li><li>Unequal willingness to compromise</li></ul></div>
+              <div><h4>Needs</h4><ul><li>Preferences in one place</li><li>Trade-offs explained</li><li>Shared and optional activities</li></ul></div>
+              <div><h4>Opportunity</h4><ul><li>A shared base plan with optional choices that adapts when someone changes their mind</li></ul></div>
+            </div></div>
+        </div>
+        <div class="profile rev">
+          <figure class="taped r"><img src="assets/illustrations/persona-weekend.svg" alt="Illustration of a young traveller with a backpack and a clock." width="260" height="200"></figure>
+          <div><span class="role">Secondary persona</span><h3>The Weekend Escaper</h3><p class="quote-b">Wants the best possible weekend within a fixed window and a tight budget.</p>
+            <div class="gcno">
+              <div><h4>Goals</h4><ul><li>Make a short break count</li><li>Stay within budget</li><li>Be back for work</li></ul></div>
+              <div><h4>Constraints</h4><ul><li>Fixed dates, little time</li><li>Limited disposable income</li><li>Flexible on where</li></ul></div>
+              <div><h4>Needs</h4><ul><li>Places that fit time and money</li><li>A compact plan</li><li>A clear total cost</li></ul></div>
+              <div><h4>Opportunity</h4><ul><li>Start from time and budget — let the destination be an output, not an input</li></ul></div>
+            </div></div>
+        </div>
+        <aside class="ai-note" aria-label="AI collaboration note">
+  <div class="an-head"><span class="an-tag">With AI · reconstructed example</span><span class="an-q">Challenging my persona choice</span></div>
+  <div class="an-flow">
+    <div class="me"><h5>My question</h5>Am I only designing for people like me?</div>
+    <div class="ai"><h5>AI exploration</h5>The case for the Family Planner's need for certainty and for Business + Leisure; the risk of designing for one's own peer group.</div>
+    <div class="me"><h5>My evaluation</h5>Took forward: the risk, stated openly as a trade-off<br>Changed: kept the choice but marked it provisional until real research is complete<br>Rejected: switching personas on an AI argument alone</div>
+    <div class="me"><h5>Final decision</h5><b>Group Coordinator (primary) and Weekend Escaper (secondary), one shared planning system.</b></div>
+  </div>
+</aside>
+      </article>
+
+      <article class="block" id="d-research">
+        <header><span class="kicker">What I learned</span><h2>A small group trip from Delhi to Jaipur</h2>
+          <p>One real travel account, anonymised — names, identities and personal details are left out. It shows destination discovery, accommodation comparison, budget trade-offs and group coordination. <span class="lbl real">Real account</span></p></header>
+        <div class="route-journey" aria-label="The planning journey, step by step">
+          <ol><li data-n="1" class="">The group had about three days free.</li><li data-n="2" class="pain">A video call to decide where to go.</li><li data-n="3" class="">Explored nearby places — no destination yet.</li><li data-n="4" class="">Chose Jaipur.</li><li data-n="5" class="">Asked people who knew the city.</li><li data-n="6" class="">Booked trains before any itinerary.</li><li data-n="7" class="pain">Searched several platforms for a stay.</li><li data-n="8" class="pain">Compared ratings, photos, prices, distance.</li><li data-n="9" class="pain">Settled on a middle-ground stay.</li><li data-n="10" class="">On the trip, some explored while others rested.</li></ol>
+        </div>
+        <p class="small muted">Orange stops mark the friction described in the account.</p>
+        <h3 class="sub">Key observations</h3>
+        <div class="obs-grid">
+          <div><b>A trip can begin with time, not a destination.</b><span>They knew when they were free, not where to go.</span></div>
+          <div><b>The hard part is connecting information, not finding it.</b><span>Search, several booking sites, reviews, photos and local tips.</span></div>
+          <div><b>Ratings and photos don't automatically earn trust.</b><span>Reliability and accuracy were still questioned.</span></div>
+          <div><b>Distance decides feasibility.</b><span>Places were dropped once distance was considered.</span></div>
+          <div><b>Groups compromise.</b><span>Budgets differed; the stay was a middle ground.</span></div>
+          <div><b>Group plans can flex.</b><span>Some explored while others rested and rejoined later.</span></div>
+          <div><b>Assistance is welcome — control is not negotiable.</b><span>Recommendations with alternatives; the traveller decides.</span></div>
+        </div>
+        <h3 class="sub">Emerging insights</h3>
+        <ul class="ruled num">
+          <li><div><b class="t">Destination is an output of planning, not always the input.</b></div></li>
+          <li><div><b class="t">The value is in connecting the pieces — and showing the evidence for each.</b></div></li>
+          <li><div><b class="t">A good group plan is a shared base with optional parts.</b></div></li>
+          <li><div><b class="t">Geography is part of the plan: where things are changes what's possible.</b></div></li>
+        </ul>
+        <div class="research-status" role="note" aria-label="Research status">
+          <div class="meter" aria-hidden="true"><i class="real">P1</i><i class="sim">P2</i><i class="sim">P3</i></div>
+          <p class="small" style="margin:0"><b>Research limits, stated plainly.</b> The brief asks for three conversations. I have one real account (P1). P2 and P3 are <span class="lbl sim">AI-simulated scenarios</span> I used to challenge assumptions and sharpen questions — they are not interviews and not evidence. Two real conversations are still to do.</p>
+        </div>
+        <details class="more"><summary>The two AI-simulated scenarios (P2 · group coordinator, P3 · weekend escaper)</summary><div class="more-body">
+          <article class="sim-card" id="sim-P2" aria-labelledby="simh-P2">
+  <div class="sim-banner"><span class="lbl sim">AI-simulated interview scenario</span>Hypothetical, generated with AI for exploration. Not a real participant; no conversation took place; no real quotes.</div>
+  <div class="sim-head"><img src="assets/illustrations/persona-group.svg" alt="" width="260" height="200"><div><span class="code">P2</span><h3 id="simh-P2">Group trip coordinator</h3><dl class="kv-mini"><dt>Scenario</dt><dd>Usually the one who organises trips for a friend group of about six, spread across two cities</dd><dt>Frequency</dt><dd>Two or three group trips a year, mostly long weekends</dd><dt>Group mix</dt><dd>Different budgets, energy levels and leave flexibility</dd><dt>Persona</dt><dd>Group Coordinator (brief archetype C)</dd></dl></div></div>
+  <details class="more"><summary>Simulated answers to the seven research questions</summary><div class="more-body"><ol class="qa"><li><b>Tell me about the last trip you planned. How did it begin?</b><span>A long weekend shows up for everyone at once. The coordinator floats it in the group chat, a few people suggest places, and a quick poll narrows them down. Dates are agreed before the destination.</span></li><li><b>How did you decide where to go and what to do?</b><span>The lowest comfortable budget in the group effectively sets the ceiling. The destination is a compromise reached after a couple of rounds of discussion; whoever feels most strongly tends to sway it.</span></li><li><b>Walk me through how you organised transport, accommodation and activities.</b><span>Collects confirmations first, then books transport for everyone in one go. Shortlists two or three stays from different platforms and shares screenshots in the chat. Activities are mostly decided on the spot.</span></li><li><b>What were the most difficult or frustrating parts?</b><span>Chasing people for confirmations; someone dropping out after bookings are made; collecting and splitting money; links and screenshots getting buried in the chat; being blamed when a choice disappoints.</span></li><li><b>How did you manage different preferences, dates and budgets — or, alone, balance time and budget?</b><span>Sets a per-person cost cap up front. Finds overlapping dates with a shared sheet. Splits the group for activities and lets latecomers join on day two.</span></li><li><b>If someone could plan your entire trip, what would you want them to handle and what would you still decide?</b><span>Would hand over shortlisting stays within the cap, comparing transport and drafting a day plan. Would keep the group's destination vote, the final stay choice and who joins which activity.</span></li><li><b>How would you feel about an AI travel planner? What would make you trust or distrust it?</b><span>Would trust it if it shows why each option fits and where the information comes from. Would distrust it if it nudges towards pricier options or hides fees. Wants friends to see and react to the plan without signing up.</span></li></ol><span class="tiny-note">Paraphrased simulations in the third person, so they can't be mistaken for quotes.</span></div></details>
+  <div class="sim-grid">
+    <div><h4>Behaviour</h4><ul><li>Dates first, destination second</li><li>Coordinator does the bookings and the money collection</li><li>Plans shared as screenshots in a group chat</li><li>Activities left flexible and decided on the trip</li></ul></div>
+    <div><h4>Difficulties → workarounds</h4><table class="table small"><tbody><tr><td>Chasing confirmations</td><td>Deadlines in the group chat; books only for those who've paid</td></tr><tr><td>Budget mismatch</td><td>Per-person cap set by the lowest budget</td></tr><tr><td>Lost information</td><td>Re-sharing screenshots; a pinned message</td></tr><tr><td>Blame when plans disappoint</td><td>Running polls so decisions feel shared</td></tr></tbody></table></div>
+    <div><h4>Observations (simulated)</h4><ul><li>The heaviest load is social — consensus, follow-ups and accountability — rather than finding information</li><li>Budget is negotiated, not stated: the lowest budget anchors everyone</li><li>Optional activities already happen informally</li></ul></div>
+    <div><h4>Emerging insights (hypotheses)</h4><ul><li>A planner that only finds options won't relieve the coordinator; it needs to help the group <i>agree</i></li><li>Making trade-offs visible (and shared) may reduce blame on the coordinator</li><li>Per-person cost may matter more than a group total</li></ul></div>
+    <div><h4>Possible design implications</h4><ul><li>A shareable plan where friends can react or vote on specific choices</li><li>Per-person cost view, with optional activities as personal add-ons</li><li>A visible change log ("here's what changed and why")</li><li>Mark who's in for each optional activity</li></ul></div>
+    <div><h4>Validate with real users</h4><ul><li>Do coordinators want each friend to input preferences, or would they rather decide for the group?</li><li>Would friends actually open a shared plan, or stay in the chat?</li><li>How much do per-person costs drive the final destination?</li></ul></div>
+  </div>
+</article>
+          <article class="sim-card" id="sim-P3" aria-labelledby="simh-P3">
+  <div class="sim-banner"><span class="lbl sim">AI-simulated interview scenario</span>Hypothetical, generated with AI for exploration. Not a real participant; no conversation took place; no real quotes.</div>
+  <div class="sim-head"><img src="assets/illustrations/persona-weekend.svg" alt="" width="260" height="200"><div><span class="code">P3</span><h3 id="simh-P3">Frequent weekend escaper</h3><dl class="kv-mini"><dt>Scenario</dt><dd>Works full time; takes a short trip every month or two, often solo, sometimes with one friend</dd><dt>Window</dt><dd>Friday evening to Sunday night, rarely takes leave</dd><dt>Budget</dt><dd>Tight and fixed per trip, keeps a buffer</dd><dt>Persona</dt><dd>Weekend Escaper (brief archetype A)</dd></dl></div></div>
+  <details class="more"><summary>Simulated answers to the seven research questions</summary><div class="more-body"><ol class="qa"><li><b>Tell me about the last trip you planned. How did it begin?</b><span>A free weekend and a bit of restlessness. A social media post or a "weekend getaways from my city" search sparks the idea — usually only days before.</span></li><li><b>How did you decide where to go and what to do?</b><span>Filters hard by travel time (an overnight journey at most), then by cost, then by whether the place is worth only a day and a half. Decides quickly.</span></li><li><b>Walk me through how you organised transport, accommodation and activities.</b><span>Books the overnight bus or train first, then a budget stay or hostel near the centre. Activities come from a saved list of posts; prefers walking and local food.</span></li><li><b>What were the most difficult or frustrating parts?</b><span>Last-minute availability; not knowing if a place is worth it for such a short stay; safety as a solo traveller; hidden local transport costs; losing time on logistics after arriving.</span></li><li><b>How did you manage different preferences, dates and budgets — or, alone, balance time and budget?</b><span>Maximises time at the destination with overnight travel, skips paid activities, and keeps some money aside for surprises.</span></li><li><b>If someone could plan your entire trip, what would you want them to handle and what would you still decide?</b><span>Would hand over the feasibility check (can I do this in two days within this budget?), a compact plan and local transport. Would keep where to go, where to stay — for safety — and what to skip.</span></li><li><b>How would you feel about an AI travel planner? What would make you trust or distrust it?</b><span>Would trust a fast, transparent answer. Would be put off by slow replies or too many questions before seeing anything useful. Wants to start from dates and budget, and wants safety information with a source.</span></li></ol><span class="tiny-note">Paraphrased simulations in the third person, so they can't be mistaken for quotes.</span></div></details>
+  <div class="sim-grid">
+    <div><h4>Behaviour</h4><ul><li>Spontaneous, short lead time</li><li>Overnight travel to protect the weekend</li><li>Budget stays and walking-heavy days</li><li>Saves ideas from social media</li></ul></div>
+    <div><h4>Difficulties → workarounds</h4><table class="table small"><tbody><tr><td>Is it worth it for 1.5 days?</td><td>Watches short videos; reads a blog or two</td></tr><tr><td>Solo safety</td><td>Chooses central, well-reviewed stays; avoids late arrivals</td></tr><tr><td>Hidden local costs</td><td>Keeps a cash buffer</td></tr><tr><td>Last-minute availability</td><td>Books transport first, stay second</td></tr></tbody></table></div>
+    <div><h4>Observations (simulated)</h4><ul><li>The deciding metric is time at the destination versus time travelling</li><li>Speed of the first useful answer matters more than richness</li><li>Safety is a first-order criterion, not a detail</li></ul></div>
+    <div><h4>Emerging insights (hypotheses)</h4><ul><li>For decisive solo travellers, a long conversation could feel like friction</li><li>Feasibility (time + money) is the real first question, before preferences</li><li>Some details — safety, late arrival — are essential, not optional extras</li></ul></div>
+    <div><h4>Possible design implications</h4><ul><li>Keep the fast "Start with available dates" entry as a first-class path</li><li>Show hours at the destination alongside travel time</li><li>Surface safety-relevant information in the default card when travelling solo</li><li>Flag last-minute availability honestly</li></ul></div>
+    <div><h4>Validate with real users</h4><ul><li>Do frequent solo travellers prefer a quick form over conversation?</li><li>What safety information would they trust, and from which sources?</li><li>Is "hours at destination" a metric people already think in?</li></ul></div>
+  </div>
+</article>
+        </div></details>
+        <details class="more"><summary>Interview guide for the real P2 and P3 conversations</summary><div class="more-body">
+          <ol class="small"><li>Tell me about the last trip you planned. How did it begin?</li><li>How did you decide where to go and what to do?</li><li>Walk me through how you organised transport, accommodation and activities.</li><li>What were the most difficult or frustrating parts?</li><li>How did you manage different preferences, dates and budgets — or, alone, balance time and budget?</li><li>If someone could plan your entire trip, what would you want them to handle and what would you still decide?</li><li>How would you feel about an AI travel planner? What would make you trust or distrust it?</li></ol>
+          <p class="tiny-note">Ask for specific examples; don't lead towards the proposed solution. Capture no names or identifying details; quote only what was accurately recorded.</p>
+        </div></details>
+      </article>
+
+      <article class="block" id="d-platform">
+        <header><span class="kicker">Where it lives</span><h2>Cleartrip or MakeMyTrip?</h2>
+          <p>An exploratory walkthrough of both, from my own use — not a usability audit.</p></header>
+        <div class="vs">
+          <div><h3>Cleartrip</h3><dl><dt>Context</dt><dd>Booking and package discovery</dd><dt>What I saw</dt><dd>Packages seemed oriented around flights + hotels</dd><dt>Opportunity</dt><dd>Connect the components and sightseeing</dd><dt>Fit</dt><dd>Possible</dd></dl></div>
+          <div><h3>MakeMyTrip <span class="stamp" style="font-size:.62rem">chosen</span></h3><dl><dt>Context</dt><dd>Booking, holiday packages, expert assistance</dd><dt>What I saw</dt><dd>A route to human travel experts, and an AI recommendation feature — on my attempt, with a long wait for a reply</dd><dt>Opportunity</dt><dd>Make assisted planning immediate, conversational and editable</dd><dt>Fit</dt><dd>Strongest link to the travel-agent idea</dd></dl></div>
+        </div>
+        <p style="margin-top:var(--s5)">MakeMyTrip already sells holidays and offers expert help — so an AI planner has a natural home there, sitting alongside its booking ecosystem rather than replacing it. <span class="lbl prop">Provisional</span></p>
+        <details class="more"><summary>Still to verify on the platforms</summary><div class="more-body"><ul class="small"><li>A systematic walkthrough of both, with dated screenshots</li><li>The exact steps to expert assistance and AI recommendations</li><li>Whether the slow AI reply I observed is repeatable (one attempt — not a general claim)</li></ul></div></details>
+      </article>
+
+      <article class="block" id="d-ai">
+        <header><span class="kicker">AI in Discover</span><h2>How I used AI while discovering</h2>
+          <p>I led discovery — the brief, the walkthroughs, my own travel experience and the Delhi–Jaipur account. AI helped me break things down, widen the list of possibilities and question first readings.</p></header>
+        <aside class="ai-note" aria-label="AI collaboration note">
+  <div class="an-head"><span class="an-tag">With AI · reconstructed example</span><span class="an-q">Preparing the research questions</span></div>
+  <div class="an-flow">
+    <div class="me"><h5>My question</h5>How do I ask about trip planning without leading people to my idea?</div>
+    <div class="ai"><h5>AI exploration</h5>Story-first interview questions; probes for difficulties; a closing question about AI and trust.</div>
+    <div class="me"><h5>My evaluation</h5>Took forward: open, story-first questions<br>Changed: cut to seven; added "what would you hand over vs keep?"<br>Rejected: questions that pitched the solution</div>
+    <div class="me"><h5>Final decision</h5><b>The seven-question guide used for P1 and for the simulations.</b></div>
+  </div>
+</aside>
+        <details class="more" id="d-ailog-more">
+  <summary>Full AI prompt log — Discover <span class="count">9 entries · 1 actual · 7 reconstructed · 1 future</span></summary>
+  <div class="more-body" data-ailog-block>
+    <p class="small muted">Each entry: the design question, the prompt, what was explored, what I accepted, modified and rejected, and how I decided. Reconstructed prompts represent the exploration and are not the exact historical wording; outcomes follow the decisions in the master document.</p>
+    <div class="filters" role="group" aria-label="Filter prompt log" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
+      <button class="chip" aria-pressed="true" data-ailog="all">All</button>
+      <button class="chip" aria-pressed="false" data-ailog="actual">Actual</button>
+      <button class="chip" aria-pressed="false" data-ailog="reconstructed">Reconstructed</button>
+      <button class="chip" aria-pressed="false" data-ailog="future">Future</button>
+    </div>
+    <div class="ailog"><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Breaking down the brief</b><span>What exactly is being evaluated, and what is mandatory versus optional?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>What exactly is being evaluated, and what is mandatory versus optional?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">Here is the Razorpay design assignment brief. Break it into mandatory deliverables, evaluation criteria and constraints. Flag anything ambiguous I should decide before starting, and don&#x27;t add requirements that aren&#x27;t in the text.</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>A requirements checklist; the deliverables A–E; the four design considerations; ambiguities such as web vs mobile and which platform.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>The checklist structure and the four considerations as the spine of the work.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Re-organised the checklist around the four considerations so each one can be traced through every stage.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Treating the 8–12 hour guidance and the three-user research as soft suggestions.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>The four considerations were mapped across all four tabs; the time box and research requirement were kept as hard constraints.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Exploring the four personas</b><span>What does each supplied persona need from a planner, and where would planning get hard for them?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>What does each supplied persona need from a planner, and where would planning get hard for them?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">For each of these four personas from the brief, describe likely goals, constraints and the moments where planning would be hardest. Stay within what the brief says and mark anything you&#x27;re assuming.</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Goals, constraints and possible pain points for each archetype; a few speculative backstories.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>The goals/constraints breakdown as a starting point for the persona cards.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Trimmed every description back to what the brief supports; anything extra was marked as an assumption.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Invented demographics and backstories beyond the brief.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>Persona cards are labelled &quot;brief archetype — not research-validated&quot;.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Comparing persona constraints</b><span>Along which dimensions do the four personas actually differ?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>Along which dimensions do the four personas actually differ?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">Compare the four personas across time, budget, number of preferences, coordination effort, schedule flexibility, need for certainty and decision complexity. Use qualitative levels, not scores.</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>A seven-dimension comparison; options for scoring or ranking.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>The seven dimensions.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Replaced any numeric scoring with qualitative levels and a legend.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Presenting the levels as measured data.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>The constraint map is shown as preliminary hypotheses, with a filter to compare the selected personas.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Brainstorming travel-planning problems</b><span>Where does planning a short domestic trip break down?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>Where does planning a short domestic trip break down?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">List the points where planning a short domestic trip tends to break down — before booking, while booking and during the trip. Group them, and say which ones would need evidence from real travellers.</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Fragmentation across sites, trust in reviews and images, price comparison, group consensus, distance and feasibility.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>The list as hypotheses to check against the Delhi–Jaipur account.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Re-framed the problem around connecting decisions rather than finding information — the designer&#x27;s own reading of the trip experience.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Using AI-listed pain points as findings.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>The designer wrote the problem hypothesis and marked it &quot;to validate&quot;.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Preparing interview questions</b><span>What should a 15–20 minute conversation ask without leading people?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>What should a 15–20 minute conversation ask without leading people?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">Draft a 15–20 minute interview guide about how people plan short trips. Start from a real recent trip, avoid leading questions and don&#x27;t mention AI until the end.</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Story-first questions, probes for difficulties, a closing question on AI and trust.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>Open, story-first questions.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Cut the guide to seven questions; added one on what people would hand over versus keep.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Questions that pitched the solution or assumed AI would help.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>The seven-question guide used for P1 and for the AI-simulated scenarios.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Exploring the travel-agent model</b><span>What made assisted planning valuable, and could a digital tool bring that back?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>What made assisted planning valuable, and could a digital tool bring that back?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">I&#x27;m interested in how travel agents used to help people plan trips. What did that service involve, which parts could a planning tool bring back, and where does the comparison break down?</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Then-versus-now comparison; agent roles; risks of romanticising the past.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>The retain-versus-improve lists.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Added a historical-framing caveat — not every traveller used an agent, and agents&#x27; roles varied.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>A nostalgic framing implying agents were simply better.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>The travel-agent inspiration — the designer&#x27;s own concept — was kept, with the caveat.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Platform comparison criteria</b><span>How should Cleartrip and MakeMyTrip be compared as hosts for this concept?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>How should Cleartrip and MakeMyTrip be compared as hosts for this concept?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">I&#x27;m choosing between Cleartrip and MakeMyTrip as the host platform for an AI trip-planning concept. What criteria should I compare them on, using only what I can observe in a walkthrough?</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Criteria: existing context, observed experience, opportunity, conceptual fit.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>The four criteria.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Filled them only with what the designer observed in the walkthrough.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Claims about platform features that hadn&#x27;t been checked.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>MakeMyTrip chosen provisionally on the designer&#x27;s walkthrough; observations phrased as personal and exploratory.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="actual">
+  <summary><span class="lbl real">Actual · this project</span><span class="log-title"><b>Generating AI-simulated interviews (P2, P3)</b><span>What might the two missing research perspectives add, before real conversations happen?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>What might the two missing research perspectives add, before real conversations happen?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">Generate two realistic, AI-simulated user interview scenarios. P2 should represent someone who has coordinated group trips involving different budgets, preferences and schedules. P3 should represent someone who frequently plans short individual trips or weekend getaways, with limited time and budget.</div><span class="tiny-note">Actual prompt from this project's AI session (15 Nov 2026), quoted from the designer's own instructions.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Two scenarios with profiles, simulated answers to the seven questions, behaviour, difficulties, observations, insights and implications.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>Using the scenarios as exploratory input to challenge assumptions and sharpen questions.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Labelled them &quot;AI-simulated&quot;; wrote the answers in the third person so they can&#x27;t read as quotes; kept them separate from the real account.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Treating them as completed research; inventing identities or quotes.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>The scenarios feed the &quot;What the simulations challenge&quot; table in Define and the follow-ups for real interviews. The three-conversation requirement stays open.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="future">
+  <summary><span class="lbl prop">Future prompt</span><span class="log-title"><b>Synthesising real interviews</b><span>Once P2 and P3 are real, what changes?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>Once P2 and P3 are real, what changes?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">Here are my notes from two 15–20 minute interviews. Summarise each participant&#x27;s trip, difficulties and workarounds using only what&#x27;s in the notes. Then compare them with the earlier AI-simulated scenarios: what did the simulations get wrong or miss?</div><span class="tiny-note">Proposed for the next round of work. Not yet run; no outcomes are claimed.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Not yet run.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>—</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>—</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>—</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>To be decided after the interviews.</dd></div>
+  </dl>
+</details></div>
+  </div>
+</details>
+      </article>
+
+      <div class="stage-next"><span></span><button type="button" data-go="define" style="text-align:right"><span>Next stage</span><b>02 Define →</b></button></div>
+    </div>
+  </div>
+</section>
+
+<section class="stage-panel" role="tabpanel" id="panel-define" aria-labelledby="tab-define" data-stage="define" tabindex="-1" hidden>
+  <div class="stage-open">
+    <div><span class="num">02 — Define</span><h1>Framing the opportunity</h1><p class="question">What opportunity am I solving, <b>and why?</b></p></div>
+    <img src="assets/illustrations/spot-define.svg" alt="" width="320" height="220">
+  </div>
+  <div class="stage-layout">
+    <nav class="toc" aria-label="Define sections"></nav>
+    <div class="stage-content"><div class="toc-mobile"></div>
+
+      <article class="block" id="f-synthesis">
+        <header><span class="kicker">Synthesis</span><h2>From what I saw to what I'll design</h2>
+          <p>Six insights, each traced from an observation in the Delhi–Jaipur account to a design response. "Patterns" are to be confirmed by the real interviews.</p></header>
+        <div class="table-scroll"><table class="synth"><thead><tr><th scope="col">Insight</th><th scope="col">Observation</th><th scope="col">Pattern</th><th scope="col">Insight</th><th scope="col">Opportunity</th><th scope="col">Design response</th></tr></thead><tbody><tr><th scope="row">Trips begin with time<span class="src"><span class="lbl real">Delhi–Jaipur account</span></span></th><td data-h="Observation">A holiday window, no destination in mind.</td><td data-h="Pattern">Some trips start from dates and budget.</td><td data-h="Insight" class="ins">The destination can be an output of planning.</td><td data-h="Opportunity">Find places that fit time, start and budget.</td><td data-h="Response" class="res">Open conversation, or start from dates.</td></tr><tr><th scope="row">Information is scattered<span class="src"><span class="lbl real">Delhi–Jaipur account</span></span></th><td data-h="Observation">Search, booking sites, reviews, photos, local tips.</td><td data-h="Pattern">Travellers assemble and validate across sources.</td><td data-h="Insight" class="ins">Finding is easy; connecting and trusting is hard.</td><td data-h="Opportunity">Bring the pieces into one plan.</td><td data-h="Response" class="res">One itinerary with details on demand.</td></tr><tr><th scope="row">Trust needs evidence<span class="src"><span class="lbl real">Delhi–Jaipur account</span></span></th><td data-h="Observation">Ratings, images and prices were questioned.</td><td data-h="Pattern">People need reasons to believe a pick.</td><td data-h="Insight" class="ins">A recommendation is only useful if its basis is visible.</td><td data-h="Opportunity">Make the why and the source visible.</td><td data-h="Response" class="res">Concise reasons + source status on every stop.</td></tr><tr><th scope="row">Groups compromise<span class="src"><span class="lbl real">Delhi–Jaipur account</span></span></th><td data-h="Observation">Budgets and energy levels differed.</td><td data-h="Pattern">Shared trips ≠ identical participation.</td><td data-h="Insight" class="ins">A shared base with optional parts fits groups.</td><td data-h="Opportunity">Design for consensus and flexibility.</td><td data-h="Response" class="res">Shared anchors + optional choices.</td></tr><tr><th scope="row">Distance decides<span class="src"><span class="lbl real">Delhi–Jaipur account</span></span></th><td data-h="Observation">Places were dropped once distance was considered.</td><td data-h="Pattern">A list of sights isn't a feasible plan.</td><td data-h="Insight" class="ins">Geography is part of itinerary quality.</td><td data-h="Opportunity">Make distance and sequence visible.</td><td data-h="Response" class="res">Route-aware days on an illustrated map.</td></tr><tr><th scope="row">Help, not takeover<span class="src"><span class="lbl real">Delhi–Jaipur account</span></span></th><td data-h="Observation">Wanted recommendations with alternatives.</td><td data-h="Pattern">Assistance is welcome; control is not given up.</td><td data-h="Insight" class="ins">AI should propose; people decide.</td><td data-h="Opportunity">Keep the traveller in charge.</td><td data-h="Response" class="res">Confirm, compare, undo — nothing auto-applied.</td></tr></tbody></table></div>
+        <details class="more"><summary>What the AI-simulated scenarios challenged</summary><div class="more-body">
+          <table class="table small"><thead><tr><th>My assumption</th><th>Challenged by (simulated)</th><th>What I did</th></tr></thead><tbody>
+            <tr><td>Conversation is the best entry for everyone</td><td>P3: decisive solo travellers may find questions slow</td><td>Kept "Start with available dates" as a first-class entry <span class="lbl mod">Adjusted</span></td></tr>
+            <tr><td>Group preferences are known up front</td><td>P2: they must be collected, often asynchronously</td><td>Illustrative group in the prototype; individual input is a next step <span class="lbl hyp">To validate</span></td></tr>
+            <tr><td>The group budget is one number</td><td>P2: the lowest budget sets the ceiling</td><td>Per-person budget; optional activities as personal add-ons <span class="lbl mod">Adjusted</span></td></tr>
+            <tr><td>Details can all sit behind detail-on-demand</td><td>P3: safety is essential for solo travel</td><td>Safety-relevant information belongs on the default card <span class="lbl prop">Proposed</span></td></tr>
+            <tr><td>The coordinator's problem is informational</td><td>P2: the load is social — consensus, follow-ups, blame</td><td>Shared, explained trade-offs and a change summary <span class="lbl hyp">To validate</span></td></tr>
+          </tbody></table>
+        </div></details>
+      </article>
+
+      <article class="block" id="f-overlap">
+        <header><span class="kicker">Common ground</span><h2>Where the two personas meet</h2>
+          <p>One planning system can serve both: the escaper's problem is individual, the coordinator's collective — but both need to make the most of limited time while managing constraints.</p></header>
+        <svg class="venn" viewBox="0 0 900 420" role="img" aria-labelledby="vennT vennD">
+  <title id="vennT">Where the two personas overlap</title><desc id="vennD">Weekend Escaper needs: fixed dates, a personal budget, quick decisions. Group Coordinator needs: many preferences, consensus, sharing the planning load. Both: make the most of limited time while managing constraints — short trips, budget-aware, feasibility first, no destination yet.</desc>
+  <defs><filter id="vw"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="3"/><feDisplacementMap in="SourceGraphic" scale="14"/></filter><filter id="vi"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="5"/><feDisplacementMap in="SourceGraphic" scale="2.4"/></filter></defs>
+  <circle cx="320" cy="215" r="185" fill="#D7EFFF" opacity=".75" filter="url(#vw)"/>
+  <circle cx="580" cy="215" r="185" fill="#FF5C34" opacity=".28" filter="url(#vw)"/>
+  <circle cx="320" cy="215" r="185" fill="none" stroke="#26211D" stroke-width="1.5" filter="url(#vi)"/>
+  <circle cx="580" cy="215" r="185" fill="none" stroke="#26211D" stroke-width="1.5" filter="url(#vi)"/>
+  <text x="225" y="120" text-anchor="middle" class="vt">Weekend Escaper</text>
+  <text x="225" y="170" text-anchor="middle" class="vs">fixed dates</text><text x="225" y="195" text-anchor="middle" class="vs">a personal budget</text><text x="225" y="220" text-anchor="middle" class="vs">decides alone, quickly</text><text x="225" y="245" text-anchor="middle" class="vs">wants the most from 1.5 days</text>
+  <text x="675" y="120" text-anchor="middle" class="vt">Group Coordinator</text>
+  <text x="675" y="170" text-anchor="middle" class="vs">many preferences</text><text x="675" y="195" text-anchor="middle" class="vs">consensus &amp; follow-ups</text><text x="675" y="220" text-anchor="middle" class="vs">unequal budgets</text><text x="675" y="245" text-anchor="middle" class="vs">carries the planning load</text>
+  <text x="450" y="150" text-anchor="middle" class="vc">make the most of</text><text x="450" y="172" text-anchor="middle" class="vc">limited time while</text><text x="450" y="194" text-anchor="middle" class="vc">managing constraints</text>
+  <text x="450" y="236" text-anchor="middle" class="vs">short trips · budget-aware</text><text x="450" y="258" text-anchor="middle" class="vs">feasibility first</text><text x="450" y="280" text-anchor="middle" class="vs">no destination yet</text>
+</svg>
+      </article>
+
+      <article class="block" id="f-problem">
+        <header><span class="kicker">Problem &amp; question</span><h2>The problem, in one sentence</h2></header>
+        <div class="statement"><p>How might we help travellers plan short trips by bringing together destination discovery, transport, accommodation and local experiences, while reducing the effort of comparing options and coordinating different constraints?</p></div>
+        <div class="hmw-band">
+          <span class="kicker">How might we…</span>
+          <p>How might we make planning a trip feel like <em>being helped by a knowledgeable travel planner,</em> rather than having to research and coordinate every part of the journey ourselves?</p>
+          <img src="assets/illustrations/plan-then.svg" alt="" width="300" height="200">
+        </div>
+        <aside class="ai-note" aria-label="AI collaboration note">
+  <div class="an-head"><span class="an-tag">With AI · reconstructed example</span><span class="an-q">Refining the problem statement</span></div>
+  <div class="an-flow">
+    <div class="me"><h5>My question</h5>Is my draft statement the right size?</div>
+    <div class="ai"><h5>AI exploration</h5>Narrower, broader and group-centred variants, each with what it would leave out.</div>
+    <div class="me"><h5>My evaluation</h5>Took forward: the emphasis on connecting, not finding<br>Changed: kept the short-trip scope<br>Rejected: framings centred on the technology</div>
+    <div class="me"><h5>Final decision</h5><b>The statement above — my wording; the HMW is mine, built on the travel-planner idea.</b></div>
+  </div>
+</aside>
+      </article>
+
+      <article class="block" id="f-principles">
+        <header><span class="kicker">Principles</span><h2>Seven rules for every screen</h2></header>
+        <ol class="principles">
+          <li><div><b>Start with intent, not a form</b><span>Let people describe the trip; ask for details only when needed.</span></div></li>
+          <li><div><b>Curate, do not overwhelm</b><span>A few meaningful options, not a long list of results.</span></div></li>
+          <li><div><b>Explain with useful evidence</b><span>Why it fits, and where the information comes from.</span></div></li>
+          <li><div><b>Keep the traveller in control</b><span>AI proposes; people review, change and approve.</span></div></li>
+          <li><div><b>Design for real-world flexibility</b><span>Optional activities; plans that adapt to changes.</span></div></li>
+          <li><div><b>Make trade-offs explicit</b><span>Name the constraint that conflicts; show the ways forward.</span></div></li>
+          <li><div><b>Connect the entire trip</b><span>Transport, stay, activities, budget and time are one plan.</span></div></li>
+        </ol>
+      </article>
+
+      <article class="block" id="f-aimap">
+        <header><span class="kicker">AI opportunity map</span><h2>What AI handles, what the traveller controls</h2></header>
+        <div class="spine" role="table" aria-label="AI responsibilities versus traveller decisions">
+          <div class="h ai" role="columnheader">AI handles</div><div class="mid" aria-hidden="true"></div><div class="h us" role="columnheader">The traveller controls</div>
+          <div class="r" role="cell">Interprets preferences from natural language</div><div class="c" aria-hidden="true"></div><div class="r us" role="cell">Corrects or confirms them</div>
+          <div class="r" role="cell">Spots missing information</div><div class="c" aria-hidden="true"></div><div class="r us" role="cell">Provides the important details</div>
+          <div class="r" role="cell">Explores feasible destinations</div><div class="c" aria-hidden="true"></div><div class="r us" role="cell">Chooses one</div>
+          <div class="r" role="cell">Builds and explains an itinerary</div><div class="c" aria-hidden="true"></div><div class="r us" role="cell">Reviews, edits, approves</div>
+          <div class="r" role="cell">Finds alternatives; names trade-offs</div><div class="c" aria-hidden="true"></div><div class="r us" role="cell">Decides which trade-off is acceptable</div>
+          <div class="r" role="cell">Updates what a change affects</div><div class="c" aria-hidden="true"></div><div class="r us" role="cell">Confirms significant changes</div>
+        </div>
+        <ul class="never" aria-label="What the AI must never do">
+          <li>Book anything without explicit approval</li><li>Present simulated prices as live</li><li>Claim availability it hasn't verified</li><li>Invent reviews or local tips</li><li>Hide material trade-offs</li><li>Treat inferred preferences as facts</li><li>Force a group into identical activities</li>
+        </ul>
+        <aside class="ai-note" aria-label="AI collaboration note">
+  <div class="an-head"><span class="an-tag">With AI · reconstructed example</span><span class="an-q">Mapping AI responsibilities</span></div>
+  <div class="an-flow">
+    <div class="me"><h5>My question</h5>What should the AI do — and never do?</div>
+    <div class="ai"><h5>AI exploration</h5>An AI / traveller split and a list of prohibited behaviours.</div>
+    <div class="me"><h5>My evaluation</h5>Took forward: the split and the "never" list<br>Changed: added two rules from my research: inferences aren't facts; groups aren't forced together<br>Rejected: any version that books or finalises without approval</div>
+    <div class="me"><h5>Final decision</h5><b>AI proposes and explains; the traveller decides.</b></div>
+  </div>
+</aside>
+      </article>
+
+      <article class="block" id="f-ai">
+        <header><span class="kicker">AI in Define</span><h2>AI as a sparring partner</h2>
+          <p>The statement, persona choice and HMW are mine. AI helped me organise observations, offered alternative readings and argued against my first choices so I could test them.</p></header>
+        <details class="more"><summary>Scope for the 12-hour challenge</summary><div class="more-body cols-2">
+          <div><h4>In</h4><ul class="small"><li>Conversational discovery &amp; contextual clarification</li><li>Destinations, multi-day itinerary, alternatives</li><li>Component-level editing; budget/time trade-offs</li><li>Group synthesis as a concept; states; final review</li></ul></div>
+          <div><h4>Out</h4><ul class="small"><li>Sign-up, payments, loyalty</li><li>Live APIs, backend, real bookings</li><li>Full collaborative messaging</li><li>Every destination and scenario</li></ul></div>
+        </div></details>
+        <details class="more"><summary>Define-stage decisions — accepted, modified, rejected</summary><div class="more-body cols-3">
+          <div><h4><span class="lbl ok">Accepted</span></h4><ul class="small"><li>Two related personas</li><li>MakeMyTrip as provisional host</li><li>Conversational discovery</li><li>A cohesive itinerary as the main output</li><li>Explicit trade-offs</li></ul></div>
+          <div><h4><span class="lbl mod">Modified</span></h4><ul class="small"><li>"AI plans the trip" → "AI prepares a plan for review"</li><li>"One plan for everyone" → shared base + optional</li><li>"Explain everything" → concise reasons, evidence on demand</li></ul></div>
+          <div><h4><span class="lbl no">Rejected</span></h4><ul class="small"><li>Two separate products</li><li>A long questionnaire</li><li>A chatbot as the whole solution</li><li>Regenerating the trip after every edit</li></ul></div>
+        </div></details>
+        <details class="more" id="d-ailog-more">
+  <summary>Full AI prompt log — Define <span class="count">6 entries · 0 actual · 6 reconstructed · 0 future</span></summary>
+  <div class="more-body" data-ailog-block>
+    <p class="small muted">Each entry: the design question, the prompt, what was explored, what I accepted, modified and rejected, and how I decided. Reconstructed prompts represent the exploration and are not the exact historical wording; outcomes follow the decisions in the master document.</p>
+    <div class="filters" role="group" aria-label="Filter prompt log" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
+      <button class="chip" aria-pressed="true" data-ailog="all">All</button>
+      <button class="chip" aria-pressed="false" data-ailog="actual">Actual</button>
+      <button class="chip" aria-pressed="false" data-ailog="reconstructed">Reconstructed</button>
+      <button class="chip" aria-pressed="false" data-ailog="future">Future</button>
+    </div>
+    <div class="ailog"><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Organising research observations</b><span>How should the Delhi–Jaipur account be structured so it can be analysed?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>How should the Delhi–Jaipur account be structured so it can be analysed?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">Here are my notes from a small group trip from Delhi to Jaipur. Sort them into planning stages, tools used and difficulties. Don&#x27;t add anything that isn&#x27;t in the notes.</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>A journey reconstruction; groupings of tools and difficulties.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>The ten-step journey and the difficulty groupings.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>The designer marked the friction points and removed personal detail.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Generalisations that the notes didn&#x27;t support.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>The anonymised journey and the seven observations in Discover.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Exploring patterns and insights</b><span>What might these observations mean beyond one trip?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>What might these observations mean beyond one trip?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">From these observations, suggest possible patterns and insights. For each, say what evidence supports it and what evidence would disprove it.</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Candidate patterns; insight statements; evidence and counter-evidence for each.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>The observation → pattern → insight → opportunity → response chain.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Relabelled &quot;patterns&quot; as &quot;patterns to investigate&quot;.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Insights that couldn&#x27;t be traced back to the account.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>Five synthesis chains, each starting from a real observation.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Challenging the persona selection</b><span>Is choosing the Group Coordinator and Weekend Escaper a blind spot?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>Is choosing the Group Coordinator and Weekend Escaper a blind spot?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">I&#x27;ve chosen the Group Coordinator and the Weekend Escaper because I know these situations well. Argue against this choice. What would I miss, and what would a different pairing show?</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>The case for the Family Planner&#x27;s need for certainty; Business + Leisure&#x27;s fixed commitments; the risk of designing for one&#x27;s own peer group.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>The risk was acknowledged in the trade-off register (less coverage of family and business travellers).</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Kept the selection but marked it provisional until real research is complete.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Switching personas on the strength of an AI argument alone.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>The designer&#x27;s selection was retained, with the trade-off stated openly.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Refining the problem statement</b><span>Is the draft problem statement the right size?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>Is the draft problem statement the right size?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">Here&#x27;s my draft problem statement. Give me three alternatives — one narrower, one broader, one centred on group coordination — and say what each would leave out.</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Narrower, broader and group-centred variants.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>The emphasis on connecting information rather than finding it.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Kept the scope on young working professionals and short trips.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Framings centred on the technology rather than on travellers.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>A working statement, marked for revision after real research.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Developing How Might We questions</b><span>Which questions should the design answer?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>Which questions should the design answer?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">Turn these insights into How Might We questions. Keep them solution-neutral and avoid assuming a chatbot.</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Supporting HMWs for preferences, feasibility, trust, consensus, editing and conflicts.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>The six supporting HMWs.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>The designer wrote the primary HMW around the travel-planner inspiration.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>HMWs that presupposed a chat interface.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>Primary HMW plus six supporting questions, each linked to its design response.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Mapping AI responsibilities</b><span>What should the AI do, and what must stay with the traveller?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>What should the AI do, and what must stay with the traveller?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">For an AI trip planner, list what the AI should do, what the traveller must decide, and what the AI should never do.</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>An AI/user responsibility split; a list of prohibited behaviours.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>The responsibility map and the &quot;should not&quot; list.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Added two rules from the research: inferred preferences aren&#x27;t facts, and the group shouldn&#x27;t be forced into identical activities.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Any version where the AI books or finalises without approval.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>The AI opportunity map: AI proposes and explains; the traveller decides and approves.</dd></div>
+  </dl>
+</details></div>
+  </div>
+</details>
+      </article>
+
+      <div class="stage-next"><button type="button" data-go="discover"><span>Previous</span><b>← 01 Discover</b></button><button type="button" data-go="develop" style="text-align:right"><span>Next stage</span><b>03 Develop →</b></button></div>
+    </div>
+  </div>
+</section>
+
+<section class="stage-panel" role="tabpanel" id="panel-develop" aria-labelledby="tab-develop" data-stage="develop" tabindex="-1" hidden>
+  <div class="stage-open">
+    <div><span class="num">03 — Develop</span><h1>Exploring and shaping the solution</h1><p class="question">How did I explore possibilities and <b>arrive at the selected solution?</b></p></div>
+    <img src="assets/illustrations/spot-develop.svg" alt="" width="320" height="220">
+  </div>
+  <div class="stage-layout">
+    <nav class="toc" aria-label="Develop sections"></nav>
+    <div class="stage-content"><div class="toc-mobile"></div>
+
+      <article class="block" id="v-directions">
+        <header><span class="kicker">Three directions</span><h2>Three ways planning could work</h2>
+          <p>They differ in how planning works, not in visual style. My own starting direction was the third; the other two let me test it.</p></header>
+        <div class="directions">
+          <div class="direction"><span class="dn">01</span><h3>Conversational Travel Companion</h3><div class="sk"><svg viewBox="0 0 240 150" aria-hidden="true"><rect x="22" y="16" width="120" height="22" rx="10" fill="#FFFDF8" stroke="#26211D" stroke-width="1.4"/><rect x="98" y="48" width="122" height="22" rx="10" fill="#26211D"/><rect x="22" y="80" width="150" height="22" rx="10" fill="#FFFDF8" stroke="#26211D" stroke-width="1.4"/><rect x="118" y="112" width="102" height="22" rx="10" fill="#26211D" opacity=".85"/></svg></div>
+            <p class="small">The whole experience is a conversation; AI gradually understands what you want.</p>
+            <div class="pc"><div><h4>Good at</h4><ul><li>Natural entry</li><li>Discovery when unsure</li></ul></div><div><h4>Weak at</h4><ul><li>Comparing a complex trip</li><li>Details buried in chat</li></ul></div></div>
+            <p class="verdict"><span class="lbl mod">Retained in part</span> conversational discovery — not a transcript as the product.</p></div>
+          <div class="direction"><span class="dn">02</span><h3>AI-Curated Trip Builder</h3><div class="sk"><svg viewBox="0 0 240 150" aria-hidden="true"><rect x="14" y="12" width="212" height="16" fill="#F1ECE1" stroke="#26211D" stroke-width="1.2"/><g fill="#FFFDF8" stroke="#26211D" stroke-width="1.2"><rect x="14" y="38" width="66" height="100"/><rect x="87" y="38" width="66" height="100"/><rect x="160" y="38" width="66" height="100"/></g><g fill="#AEB8A0"><rect x="21" y="46" width="52" height="26"/><rect x="94" y="46" width="52" height="26"/><rect x="167" y="46" width="52" height="26"/></g><g stroke="#BDB2A0"><path d="M21 84 h50 M21 94 h40 M94 84 h50 M94 94 h36 M167 84 h50 M167 94 h44"/></g></svg></div>
+            <p class="small">AI generates a structured plan; you review and change each component.</p>
+            <div class="pc"><div><h4>Good at</h4><ul><li>The whole trip visible</li><li>Easy comparison</li></ul></div><div><h4>Weak at</h4><ul><li>Still search-first</li><li>Needs input upfront</li></ul></div></div>
+            <p class="verdict"><span class="lbl mod">Retained in part</span> the structured itinerary as the main output.</p></div>
+          <div class="direction chosen"><span class="dn">03</span><span class="stamp">selected</span><h3>Conversation + editable itinerary</h3><div class="sk"><svg viewBox="0 0 240 150" aria-hidden="true"><rect x="8" y="10" width="64" height="130" fill="#F8F5EE" stroke="#26211D" stroke-width="1.2"/><rect x="14" y="20" width="46" height="12" rx="6" fill="#FFFDF8" stroke="#26211D"/><rect x="24" y="40" width="42" height="12" rx="6" fill="#26211D"/><rect x="14" y="60" width="52" height="12" rx="6" fill="#FFFDF8" stroke="#26211D"/><rect x="78" y="10" width="102" height="130" fill="#E5E9DD" stroke="#26211D" stroke-width="1.2"/><path d="M90 120 Q110 80 130 92 T168 34" fill="none" stroke="#FF5C34" stroke-width="2.2" stroke-dasharray="5 4"/><circle cx="90" cy="120" r="5" fill="#FF5C34" stroke="#26211D"/><circle cx="130" cy="92" r="5" fill="#FF5C34" stroke="#26211D"/><circle cx="168" cy="34" r="5" fill="#B9DCF2" stroke="#26211D"/><g fill="#FFFDF8" stroke="#26211D" stroke-width="1.2"><rect x="186" y="10" width="46" height="28"/><rect x="186" y="44" width="46" height="28"/><rect x="186" y="78" width="46" height="28"/></g></svg></div>
+            <p class="small">Start by talking; AI clarifies in context and builds a structured, map-led itinerary that stays editable.</p>
+            <div class="pc"><div><h4>Good at</h4><ul><li>Discovery and comparison</li><li>Explainable, editable</li><li>Individual and group</li></ul></div><div><h4>Weak at</h4><ul><li>More to design and build</li><li>Chat and plan must stay in sync</li></ul></div></div>
+            <p class="verdict"><span class="lbl ok">Selected</span> my proposed direction, tested against the other two.</p></div>
+        </div>
+        <details class="more"><summary>How the three compared against the brief and research</summary><div class="more-body"><div class="table-scroll"><table class="table small">
+          <thead><tr><th>Criterion</th><th>01</th><th>02</th><th class="hl-col">03</th></tr></thead><tbody>
+          <tr><td>Discovery without a destination</td><td><span class="fit strong">strong</span></td><td><span class="fit weak">weak</span></td><td class="hl-col"><span class="fit strong">strong</span></td></tr>
+          <tr><td>Clarify without a form</td><td><span class="fit strong">strong</span></td><td><span class="fit weak">weak</span></td><td class="hl-col"><span class="fit strong">strong</span></td></tr>
+          <tr><td>See and compare the whole trip</td><td><span class="fit weak">weak</span></td><td><span class="fit strong">strong</span></td><td class="hl-col"><span class="fit strong">strong</span></td></tr>
+          <tr><td>Swap pieces without starting over</td><td><span class="fit partial">partial</span></td><td><span class="fit strong">strong</span></td><td class="hl-col"><span class="fit strong">strong</span></td></tr>
+          <tr><td>Explain with evidence</td><td><span class="fit partial">partial</span></td><td><span class="fit partial">partial</span></td><td class="hl-col"><span class="fit strong">strong</span></td></tr>
+          <tr><td>Feasible in 8–12 hours</td><td><span class="fit strong">strong</span></td><td><span class="fit strong">strong</span></td><td class="hl-col"><span class="fit partial">partial</span></td></tr>
+          </tbody></table></div><p class="tiny-note">Qualitative judgement, not a scored test.</p></div></details>
+        <aside class="ai-note" aria-label="AI collaboration note">
+  <div class="an-head"><span class="an-tag">With AI · reconstructed example</span><span class="an-q">Testing my direction against alternatives</span></div>
+  <div class="an-flow">
+    <div class="me"><h5>My question</h5>Is conversation + an editable itinerary really the strongest direction?</div>
+    <div class="ai"><h5>AI exploration</h5>Two genuinely different rivals and the strongest case for each.</div>
+    <div class="me"><h5>My evaluation</h5>Took forward: the rivals as comparison points<br>Changed: judged all three against the brief and research<br>Rejected: variants that only changed visual style</div>
+    <div class="me"><h5>Final decision</h5><b>Direction 03 — my hybrid.</b></div>
+  </div>
+</aside>
+      </article>
+
+      <article class="block" id="v-hybrid">
+        <header><span class="kicker">Why the hybrid</span><h2>Talk like a person, plan like a planner</h2>
+          <p>The hybrid joins what each rival did best into one continuous experience.</p></header>
+        <div class="hybrid-flow">
+          <div><b>Natural conversation</b><span>Describe the trip in your words — no destination needed.</span></div>
+          <div><b>Preference understanding</b><span>AI reflects what it heard; you correct it.</span></div>
+          <div><b>Structured itinerary</b><span>Transport, stay and days connected on a map.</span></div>
+          <div><b>Transparency</b><span>Short reasons, source status, cost and time.</span></div>
+          <div><b>Your control</b><span>Swap, compare, undo — you approve every change.</span></div>
+        </div>
+      </article>
+
+      <article class="block" id="v-considerations">
+        <header><span class="kicker">The four considerations</span><h2>Designing around the brief</h2></header>
+
+        <section class="consider" id="v-c1" aria-labelledby="c1h">
+          <span class="L">A</span>
+          <div><h3 id="c1h">Conversation &amp; input</h3><p class="q">How does AI understand preferences without a long questionnaire?</p>
+            <div class="demo-row">
+              <div><p class="bubble-user">"I like places surrounded by greenery, small cafes, local food, walking around — nothing too hectic."</p>
+                <ul class="map-arrows" aria-label="How the words are interpreted"><li><span>greenery</span><span class="a">→</span><span class="to">nature-led places</span></li><li><span>small cafes</span><span class="a">→</span><span class="to">independent cafes</span></li><li><span>local food</span><span class="a">→</span><span class="to">food exploration</span></li><li><span>walking around</span><span class="a">→</span><span class="to">walkable areas</span></li><li><span>not hectic</span><span class="a">→</span><span class="to">relaxed pace</span></li></ul>
+                <p class="tiny-note">Illustrative example.</p></div>
+              <div><p class="bubble-ai">"Sounds like a quieter hill town with scenic walks, local cafes and a relaxed pace. Shall I explore a few places that match?"</p>
+                <p class="small" style="margin-top:var(--s4)"><b>Decision.</b> Open with intent; reflect preferences back as editable chips with the words they came from; ask for dates, group size and budget only when needed — in one pre-filled card — and never re-ask. The summary describes <i>this trip</i>, not a personality label.</p></div>
+            </div>
+            <aside class="ai-note" aria-label="AI collaboration note">
+  <div class="an-head"><span class="an-tag">With AI · reconstructed example</span><span class="an-q">How should the user begin planning?</span></div>
+  <div class="an-flow">
+    <div class="me"><h5>My question</h5>My first thought was a conversation instead of a booking form. How else could preferences be collected?</div>
+    <div class="ai"><h5>AI exploration</h5>Open-ended prompts, chips, quizzes and a "travel identity" label.</div>
+    <div class="me"><h5>My evaluation</h5>Took forward: contextual, conversational discovery<br>Changed: structured constraints still collected, but progressively<br>Rejected: a long mandatory questionnaire; a personality quiz</div>
+    <div class="me"><h5>Final decision</h5><b>Conversation-led discovery with contextual clarification.</b></div>
+  </div>
+</aside>
+          </div>
+        </section>
+
+        <section class="consider" id="v-c2" aria-labelledby="c2h">
+          <span class="L">B</span>
+          <div><h3 id="c2h">AI planning &amp; transparency</h3><p class="q">How does AI connect the pieces and say why?</p>
+            <div class="tiers">
+              <div><b>Recommended</b>The best match against known constraints — prominent.</div>
+              <div><b>Alternative</b>Meets most needs — fully readable, never greyed out.</div>
+              <div><b>Trade-off</b>Changes one thing — cost, time or comfort — and says which.</div>
+            </div>
+            <p class="small" style="margin-top:var(--s5)"><b>Decision.</b> Every stop carries two or three concise reasons (e.g. "within the stay budget · 12 min from Day 1 stops · matches 'quiet, green'"), a source status and a simulated cost. No long reasoning, no invented confidence scores. Loading shows what's actually happening, step by step.</p>
+            <aside class="ai-note" aria-label="AI collaboration note">
+  <div class="an-head"><span class="an-tag">With AI · reconstructed example</span><span class="an-q">Presenting recommendations and alternatives</span></div>
+  <div class="an-flow">
+    <div class="me"><h5>My question</h5>How can each pick explain itself in a few lines?</div>
+    <div class="ai"><h5>AI exploration</h5>A three-tier hierarchy, reason templates, confidence percentages.</div>
+    <div class="me"><h5>My evaluation</h5>Took forward: three tiers; 2–3 concise reasons<br>Changed: alternatives must stay fully readable<br>Rejected: confidence scores with no real basis</div>
+    <div class="me"><h5>Final decision</h5><b>Concise "why" lines; evidence on demand.</b></div>
+  </div>
+</aside>
+          </div>
+        </section>
+
+        <section class="consider" id="v-c3" aria-labelledby="c3h">
+          <span class="L">C</span>
+          <div><h3 id="c3h">Review &amp; control</h3><p class="q">How do people change one piece without rebuilding the trip?</p>
+            <figure class="change-diagram"><svg viewBox="0 0 640 170" role="img" aria-label="Localised change: one stop on Day 2 is swapped; the other stops stay the same; only the route segments touching the new stop and the budget update.">
+  <g font-family="Epilogue, sans-serif" font-size="12">
+  <text x="0" y="16" font-weight="700" letter-spacing="1.5" fill="#6B6358">DAY 2 · BEFORE</text>
+  <path d="M30 50 H 610" stroke="#2F6E95" stroke-width="2" stroke-dasharray="6 6"/>
+  <circle cx="40" cy="50" r="13" fill="#E9F056" stroke="#26211D" stroke-width="1.6"/><text x="40" y="54" text-anchor="middle" font-weight="700">S</text>
+  <circle cx="170" cy="50" r="13" fill="#B9DCF2" stroke="#26211D" stroke-width="1.6"/><text x="170" y="54" text-anchor="middle" font-weight="700">1</text><text x="170" y="82" text-anchor="middle" fill="#4D463E">Waterfall walk</text>
+  <circle cx="320" cy="50" r="13" fill="#B9DCF2" stroke="#26211D" stroke-width="1.6" stroke-dasharray="3 3"/><text x="320" y="54" text-anchor="middle" font-weight="700">2</text>
+  <circle cx="460" cy="50" r="13" fill="#B9DCF2" stroke="#26211D" stroke-width="1.6"/><text x="460" y="54" text-anchor="middle" font-weight="700">3</text>
+  <circle cx="600" cy="50" r="13" fill="#B9DCF2" stroke="#26211D" stroke-width="1.6"/><text x="600" y="54" text-anchor="middle" font-weight="700">4</text>
+  <text x="0" y="116" font-weight="700" letter-spacing="1.5" fill="#6B6358">AFTER · ONE STOP CHANGES</text>
+  <path d="M30 140 H 320" stroke="#FF5C34" stroke-width="3.2"/><path d="M320 140 H 610" stroke="#2F6E95" stroke-width="2" stroke-dasharray="6 6"/>
+  <circle cx="40" cy="140" r="13" fill="#E9F056" stroke="#26211D" stroke-width="1.6"/><text x="40" y="144" text-anchor="middle" font-weight="700">S</text>
+  <circle cx="170" cy="140" r="15" fill="#FF5C34" stroke="#26211D" stroke-width="2"/><text x="170" y="144" text-anchor="middle" font-weight="700">1</text><text x="170" y="168" text-anchor="middle" font-weight="700">Local food trail</text>
+  <circle cx="320" cy="140" r="13" fill="#B9DCF2" stroke="#26211D" stroke-width="1.6" stroke-dasharray="3 3"/><text x="320" y="144" text-anchor="middle" font-weight="700">2</text>
+  <circle cx="460" cy="140" r="13" fill="#B9DCF2" stroke="#26211D" stroke-width="1.6"/><text x="460" y="144" text-anchor="middle" font-weight="700">3</text>
+  <circle cx="600" cy="140" r="13" fill="#B9DCF2" stroke="#26211D" stroke-width="1.6"/><text x="600" y="144" text-anchor="middle" font-weight="700">4</text>
+  <text x="460" y="110" text-anchor="middle" fill="#4C5D3C" font-weight="700">unchanged ✓</text>
+  </g>
+</svg><figcaption>"I don't want another waterfall on Day 2." Only the touched stop, its route segments and the budget change — the user sees the impact and confirms first.</figcaption></figure>
+            <p class="small" style="margin-top:var(--s4)"><b>Decision.</b> Replace, remove or make optional at component level; show what changes, what stays, the budget and time impact; confirm; undo. For groups: shared anchors plus optional choices that meet at the same place — as in the Delhi–Jaipur trip, where some explored while others rested.</p>
+            <aside class="ai-note" aria-label="AI collaboration note">
+  <div class="an-head"><span class="an-tag">With AI · reconstructed example</span><span class="an-q">Keeping the itinerary editable</span></div>
+  <div class="an-flow">
+    <div class="me"><h5>My question</h5>How can one change avoid regenerating the whole plan?</div>
+    <div class="ai"><h5>AI exploration</h5>Slot-based swaps, impact previews, regenerate-on-edit, per-person itineraries.</div>
+    <div class="me"><h5>My evaluation</h5>Took forward: slot swaps with an impact preview and undo<br>Changed: group options grounded in my research<br>Rejected: regenerating everything; separate itineraries per person</div>
+    <div class="me"><h5>Final decision</h5><b>Localised changes, confirmed by the traveller.</b></div>
+  </div>
+</aside>
+          </div>
+        </section>
+
+        <section class="consider" id="v-c4" aria-labelledby="c4h">
+          <span class="L">D</span>
+          <div><h3 id="c4h">Edge cases</h3><p class="q">What happens when budget, dates, timing or availability don't fit?</p>
+            <p class="bubble-ai">"I couldn't fit this plan within ₹7,000 per person with the current stay. Here are three ways forward — nothing changes until you choose."</p>
+            <div class="conflict-opts">
+              <div><b>Change the stay</b>Keep the place and every activity; trade privacy for cost.</div>
+              <div><b>Optional as add-ons</b>Those who join the pricier activity pay for it.</div>
+              <div><b>Raise the budget slightly</b>Keep everything as planned.</div>
+            </div>
+            <div class="err-tax">
+              <div style="border-top-color:var(--coral)"><b>Constraint conflict</b>The system works; the requirements can't all be met.</div>
+              <div style="border-top-color:var(--mustard)"><b>Information unavailable</b>A detail can't be confirmed.</div>
+              <div style="border-top-color:var(--plum)"><b>Technical error</b>Something failed to load.</div>
+              <div style="border-top-color:var(--blue-text)"><b>Empty result</b>Nothing in the data matches.</div>
+            </div>
+            <p class="small" style="margin-top:var(--s4)"><b>Decision.</b> Never "No results found". Detect the type, keep the plan and inputs, name the cause in plain words, offer at least two options with what changes and what's kept, apply only on approval, allow undo.</p>
+            <aside class="ai-note" aria-label="AI collaboration note">
+  <div class="an-head"><span class="an-tag">With AI · reconstructed example</span><span class="an-q">Thinking through failures</span></div>
+  <div class="an-flow">
+    <div class="me"><h5>My question</h5>What are all the ways this plan could fail?</div>
+    <div class="ai"><h5>AI exploration</h5>A conflict taxonomy, recovery options, error versus conflict.</div>
+    <div class="me"><h5>My evaluation</h5>Took forward: the four failure types<br>Changed: every option must show change, kept and impact<br>Rejected: a generic empty message</div>
+    <div class="me"><h5>Final decision</h5><b>The conflict card and the prototype's states lab.</b></div>
+  </div>
+</aside>
+          </div>
+        </section>
+      </article>
+
+      <article class="block" id="v-dod">
+        <header><span class="kicker">Detail on demand</span><h2>Details when you want them</h2>
+          <p>Hotel, transport and activity details shouldn't clutter the itinerary. Hover previews on desktop; tap, click or keyboard focus open the same details — essential information is never hover-only.</p></header>
+        <div class="split">
+          <div class="dod-demo">
+            <button class="stop" type="button" id="dodDemo" aria-expanded="false" aria-controls="dodDemoPanel">
+              <span class="sn k-stay both">S</span>
+              <span><span class="st"><span>Sat · check-in 9:30</span><span>₹1,800 pp</span></span><span class="sname">Coffee-estate homestay (sample)</span><span class="smeta"><span>Recommended stay · Madikeri outskirts</span></span><span class="stags"><span class="tag rec">Recommended</span><span class="tag sim">Simulated</span></span></span>
+            </button>
+            <div class="dod-panel" id="dodDemoPanel" hidden><h4>Why this stay</h4><ul class="small" style="margin-bottom:6px"><li>Within the stay budget</li><li>≈12 min to Day 1 stops (simulated)</li><li>Matches "quiet, green"</li></ul><p class="tiny-note">Source: unverified in prototype · Alternatives: town guesthouse, hostel dorm</p></div>
+            <p class="tiny-note" style="margin-top:8px">Try it: hover, Tab to it, or tap.</p>
+          </div>
+          <div><h4>Always on the card</h4><p class="small">Type · time · place · cost · status</p><h4>On demand</h4><p class="small">Picture · why it's recommended · travel time to the next stop · source status · alternatives · replace</p><p class="small muted">Ratings and review counts appear only if a verified source exists — none is connected in the prototype, so none is shown.</p></div>
+        </div>
+      </article>
+
+      <article class="block" id="v-map">
+        <header><span class="kicker">Map-led recommendations</span><h2>The itinerary is also a map</h2>
+          <p>A list can't show that two places are an hour apart. The illustrated map is the centre of the planning view: where you're going, which places are recommended, what's near and what's far, how each day moves, and which stops are optional.</p></header>
+        <div class="split rev">
+          <figure class="map-preview taped"><div class="mp-inner"><img src="assets/illustrations/map-coorg.svg" alt="Illustrated map of Coorg with Day 1 stops clustered around Madikeri and Day 2 stops spread east to Dubare and Bylakuppe." width="1000" height="700"><span class="pm st" style="left:30.0%;top:62.6%">S</span><span class="pm " style="left:22.2%;top:68.9%">1</span><span class="pm " style="left:40.0%;top:52.6%">2</span><span class="pm " style="left:34.8%;top:42.9%">3</span><span class="pm " style="left:28.6%;top:35.1%">4</span><span class="pm d2" style="left:16.8%;top:29.4%">1</span><span class="pm d2 opt" style="left:70.4%;top:80.9%">2</span><span class="pm d2" style="left:82.2%;top:55.1%">4</span></div><figcaption>Day 1 (orange) stays close to Madikeri; Day 2 (blue) travels east. Conceptual, not to scale.</figcaption></figure>
+          <div><ul class="ruled">
+            <li><b class="t">One ID, two views</b><span class="d">Pick a stop in the list → its marker lights up and the route leading to it thickens. Pick a marker → the list item highlights and details open.</span></li>
+            <li><b class="t">Days by colour, number and shape</b><span class="d">Orange Day 1, blue Day 2; circles for activities, squares for the stay, diamonds for transport. Dashed outlines are optional.</span></li>
+            <li><b class="t">Near and far, at a glance</b><span class="d">A walkable town cluster; travel-time chips on legs; legs of 40 minutes or more drawn dark.</span></li>
+            <li><b class="t">Honest about itself</b><span class="d">Conceptual, not to scale, times simulated. If it fails, the list still works.</span></li>
+          </ul></div>
+        </div>
+        <aside class="ai-note" aria-label="AI collaboration note">
+  <div class="an-head"><span class="an-tag">With AI · reconstructed example</span><span class="an-q">Planning the map-based experience</span></div>
+  <div class="an-flow">
+    <div class="me"><h5>My question</h5>My itinerary should also be a map — how do the two stay linked?</div>
+    <div class="ai"><h5>AI exploration</h5>Shared IDs, colour plus shape per day, a schematic map versus a map library.</div>
+    <div class="me"><h5>My evaluation</h5>Took forward: shared IDs; numbers, shapes and colours together<br>Changed: an illustrated map labelled conceptual, not to scale<br>Rejected: a real map library with API keys for this scope</div>
+    <div class="me"><h5>Final decision</h5><b>The map-led interface — my decision — built as an illustrated map synced with the list.</b></div>
+  </div>
+</aside>
+      </article>
+
+      <article class="block" id="v-ia">
+        <header><span class="kicker">Information architecture</span><h2>How the planner is organised</h2>
+          <p>Conversation and itinerary stay connected throughout — never two separate products. Expand or collapse any branch.</p></header>
+        <div class="ia" id="iaTree">
+          <div class="ia-root">AI Travel Planner</div>
+          <div class="ia-node"><button type="button" aria-expanded="true"><span class="n">1</span>Start planning</button><ul><li>Welcome</li><li>Start with an idea</li><li>Start with dates</li><li>Start with a destination</li></ul></div>
+          <div class="ia-node"><button type="button" aria-expanded="true"><span class="n">2</span>Discover preferences</button><ul><li>Open prompts</li><li>Interpretation</li><li>Confirm · edit · reject</li></ul></div>
+          <div class="ia-node"><button type="button" aria-expanded="true"><span class="n">3</span>Clarify constraints</button><ul><li>Departure · dates</li><li>Travellers · budget</li><li>Group preferences</li><li>Must-haves</li></ul></div>
+          <div class="ia-node"><button type="button" aria-expanded="true"><span class="n">4</span>Explore destinations</button><ul><li>Recommended · alternatives</li><li>Why · journey time · budget fit</li><li>Compare · select</li></ul></div>
+          <div class="ia-node"><button type="button" aria-expanded="true"><span class="n">5</span>Generate trip</button><ul><li>Transport · stay</li><li>Day-by-day plan</li><li>Illustrated map</li><li>Budget</li></ul></div>
+          <div class="ia-node"><button type="button" aria-expanded="true"><span class="n">6</span>Review &amp; refine</button><ul><li>Map ↔ list sync</li><li>Detail on demand</li><li>Replace · remove · optional</li><li>Undo</li></ul></div>
+          <div class="ia-node"><button type="button" aria-expanded="true"><span class="n">7</span>Resolve conflicts</button><ul><li>Budget · dates</li><li>Unavailable · unverified</li><li>Group disagreement</li></ul></div>
+          <div class="ia-node"><button type="button" aria-expanded="true"><span class="n">8</span>Final summary</button><ul><li>Plan · costs · caveats</li><li>Continue to booking options</li></ul></div>
+        </div>
+        <details class="more"><summary>The core user flow</summary><div class="more-body">
+          <div class="flow" aria-label="Core user flow">
+            <span class="step end">Start</span><span class="down"></span><span class="step user">Describe the ideal trip</span><span class="down"></span><span class="step ai">AI interprets preferences</span><span class="down"></span><span class="step user">Confirm or edit</span><span class="down"></span><span class="step ai">AI asks for what's missing</span><span class="down"></span><span class="step ai">AI suggests destinations</span><span class="down"></span><span class="step user">Choose one</span><span class="down"></span><span class="step ai">AI builds the map-led itinerary</span><span class="down"></span><span class="step user">Explore the map, open details</span><span class="down"></span>
+            <span class="decision">Change a component?</span><span class="down"></span>
+            <div class="branch"><div><span class="bl">yes</span><span class="step ai">AI shows the impact</span><span class="down"></span><span class="step user">Confirm or keep</span></div><div><span class="bl">no</span><span class="step">continue</span></div></div><span class="down"></span>
+            <span class="decision">Constraints feasible?</span><span class="down"></span>
+            <div class="branch"><div><span class="bl">no</span><span class="step ai">Explain → options</span><span class="down"></span><span class="step user">Choose one</span></div><div><span class="bl">yes</span><span class="step">continue</span></div></div><span class="down"></span>
+            <span class="step ai">Final summary</span><span class="down"></span><span class="step end">Approve → booking options</span>
+          </div>
+        </div></details>
+      </article>
+
+      <article class="block" id="v-ai">
+        <header><span class="kicker">AI collaboration &amp; trade-offs</span><h2>Exploring with AI, deciding myself</h2>
+          <p>The notes in this stage show the pattern: I set a question, AI widened the options, I evaluated them against the brief and research, and I decided.</p></header>
+        <details class="more"><summary>Develop decision log — where each idea came from</summary><div class="more-body"><div class="table-scroll"><table class="table small">
+          <thead><tr><th>Idea</th><th>Origin</th><th>Decision</th><th>Why</th></tr></thead><tbody>
+          <tr><td>Open-ended prompts</td><td>My direction</td><td><span class="lbl ok">Accepted</span></td><td>Natural discovery</td></tr>
+          <tr><td>Detailed form first</td><td>Conventional pattern, explored with AI</td><td><span class="lbl no">Rejected</span></td><td>Friction; assumes a destination</td></tr>
+          <tr><td>Fully conversational itinerary</td><td>Rival direction, generated with AI</td><td><span class="lbl mod">Modified</span></td><td>Needs a structured plan to compare</td></tr>
+          <tr><td>AI finalises the trip</td><td>Extreme explored with AI</td><td><span class="lbl no">Rejected</span></td><td>The traveller must approve</td></tr>
+          <tr><td>Recommended + alternatives</td><td>Mine, from research; refined with AI</td><td><span class="lbl ok">Accepted</span></td><td>Choice and trade-offs</td></tr>
+          <tr><td>Regenerate after every edit</td><td>Explored with AI</td><td><span class="lbl no">Rejected</span></td><td>Disruptive</td></tr>
+          <tr><td>Detail on demand</td><td>My proposal</td><td><span class="lbl ok">Accepted</span></td><td>Readable plan, detail available</td></tr>
+          <tr><td>Shared + optional activities</td><td>Mine, from the Delhi–Jaipur trip</td><td><span class="lbl ok">Accepted</span></td><td>Different preferences and energy</td></tr>
+          <tr><td>Map-led itinerary</td><td>My interface decision</td><td><span class="lbl ok">Accepted</span></td><td>Distance and day grouping visible</td></tr>
+          </tbody></table></div><p class="tiny-note">Origins reconstructed from the master document. "Explored with AI" means AI helped generate or stress-test an option before I decided.</p></div></details>
+        <details class="more"><summary>Trade-off register</summary><div class="more-body"><div class="table-scroll"><table class="table small">
+          <thead><tr><th>Decision</th><th>Why</th><th>Trade-off</th></tr></thead><tbody>
+          <tr><td>Group Coordinator primary</td><td>Richer coordination problem</td><td>More interaction complexity; less family/business coverage</td></tr>
+          <tr><td>Hybrid conversation + itinerary</td><td>Discovery and comparison</td><td>Two views to keep in sync</td></tr>
+          <tr><td>Detail on demand</td><td>Readable itinerary</td><td>Essential info must stay visible</td></tr>
+          <tr><td>Illustrated map</td><td>Spatial understanding, anticipation</td><td>Not for navigation</td></tr>
+          <tr><td>Simulated data, no backend</td><td>Fits the time box</td><td>Can't validate live booking behaviour</td></tr>
+          </tbody></table></div></div></details>
+        <details class="more" id="d-ailog-more">
+  <summary>Full AI prompt log — Develop <span class="count">7 entries · 0 actual · 7 reconstructed · 0 future</span></summary>
+  <div class="more-body" data-ailog-block>
+    <p class="small muted">Each entry: the design question, the prompt, what was explored, what I accepted, modified and rejected, and how I decided. Reconstructed prompts represent the exploration and are not the exact historical wording; outcomes follow the decisions in the master document.</p>
+    <div class="filters" role="group" aria-label="Filter prompt log" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
+      <button class="chip" aria-pressed="true" data-ailog="all">All</button>
+      <button class="chip" aria-pressed="false" data-ailog="actual">Actual</button>
+      <button class="chip" aria-pressed="false" data-ailog="reconstructed">Reconstructed</button>
+      <button class="chip" aria-pressed="false" data-ailog="future">Future</button>
+    </div>
+    <div class="ailog"><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Testing the direction against alternatives</b><span>Is conversational discovery plus an editable itinerary really the strongest direction?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>Is conversational discovery plus an editable itinerary really the strongest direction?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">My direction is conversational discovery that leads to an editable, AI-curated itinerary. Give me two genuinely different alternatives and the strongest case for each, so I can test my direction against them.</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>A chat-only companion; a structured, AI-curated trip builder; variations in visual treatment.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>The two rivals as comparison points.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Evaluated all three against the brief and research, not against each other&#x27;s strengths alone.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Variants that only differed in visual style.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>Direction 03 — the designer&#x27;s hybrid — selected, with the evaluation matrix showing why.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Conversation vs structured planning</b><span>When should the experience talk, and when should it show a form?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>When should the experience talk, and when should it show a form?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">Compare starting a trip with a conversation versus a structured form. Where does each fail, and when should structured inputs appear?</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Progressive disclosure; structured controls for dates and budget; when chat becomes hard to navigate.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>Progressive, contextual structured inputs.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Added a rule: never re-ask something already said. The P3 simulation later reinforced the date-first shortcut.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Removing structured inputs entirely.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>Conversation is primary; dates, travellers and budget appear as a pre-filled card.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Brainstorming interaction possibilities</b><span>How can the AI show what it understood, so the user can correct it?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>How can the AI show what it understood, so the user can correct it?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">Brainstorm ways an AI planner could reflect inferred travel preferences back to the user so they can confirm or correct them.</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Editable preference chips; a &quot;travel identity&quot; label; a short quiz; a summary sentence.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>Editable chips showing the phrase each preference came from.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Turned the identity idea into a temporary trip-preference summary — the designer didn&#x27;t want a lasting personality label.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>A personality quiz.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>Inferred preferences shown as removable chips with a one-line summary.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Recommendation transparency</b><span>How can a recommendation explain itself without overwhelming people?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>How can a recommendation explain itself without overwhelming people?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">How can each recommendation explain itself in two or three lines, without exposing long internal reasoning? Suggest a hierarchy for recommended and alternative options.</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Recommended / alternative / trade-off tiers; reason templates; confidence scores.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>The three-tier hierarchy and two-to-three concise reasons.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Alternatives must stay fully readable, not greyed out.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Confidence percentages with no real basis.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>Concise &quot;why&quot; lines on every stop; evidence on demand.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Detail-on-demand</b><span>Can details stay hidden until wanted without excluding anyone?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>Can details stay hidden until wanted without excluding anyone?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">I want hotel, transport and activity details hidden until the user hovers over a suggestion. Stress-test this for touch screens and keyboard users.</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Hover previews; tap and focus equivalents; what must always be visible.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>Tap, click and keyboard focus as equal ways in.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Essential information (time, place, cost, status) stays on the default card.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Hover as the only way to see details.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>The designer&#x27;s detail-on-demand proposal was kept, with accessibility rules.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Group coordination &amp; optional activities</b><span>How can a group stay together without everyone doing the same thing?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>How can a group stay together without everyone doing the same thing?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">In a group where four people want a relaxed trip and two want adventure, how could one itinerary keep everyone together without forcing the same activities?</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Parallel optional activities; meeting points; separate itineraries; majority voting.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>Shared anchors plus optional choices that start and end at the same place.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Grounded the idea in the Delhi–Jaipur observation that some explored while others rested.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Separate itineraries per person; decisions by majority vote alone.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>Sunday&#x27;s optional rafting / riverside slot in the prototype.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Edge cases &amp; trade-offs</b><span>What happens when the plan can&#x27;t satisfy everything?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>What happens when the plan can&#x27;t satisfy everything?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">List the ways this plan can fail — budget, availability, timing, group changes, unverifiable information — and how the AI should respond to each.</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>A conflict taxonomy; recovery options; error versus conflict.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>The conflict table and the split between constraint conflict, unavailable information, technical error and empty result.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Every option has to show what changes, what&#x27;s kept and the cost/time impact.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>A generic &quot;No results found&quot;.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>The conflict card with three options, and the prototype&#x27;s states lab.</dd></div>
+  </dl>
+</details></div>
+  </div>
+</details>
+      </article>
+
+      <div class="stage-next"><button type="button" data-go="define"><span>Previous</span><b>← 02 Define</b></button><button type="button" data-go="deliver" style="text-align:right"><span>Next stage</span><b>04 Deliver →</b></button></div>
+    </div>
+  </div>
+</section>
+
+<section class="stage-panel" role="tabpanel" id="panel-deliver" aria-labelledby="tab-deliver" data-stage="deliver" tabindex="-1" hidden>
+  <div class="stage-open">
+    <div><span class="num">04 — Deliver</span><h1>The planner, working</h1><p class="question">How does the final solution work, <b>and what would I improve next?</b></p></div>
+    <img src="assets/illustrations/spot-deliver.svg" alt="" width="320" height="220">
+  </div>
+  <div class="block" id="l-overview" style="margin-bottom:var(--s7)">
+    <header style="max-width:none"><span class="kicker">The product</span><h2 class="sr-only">Product overview</h2>
+    <p class="lede wide">A conversational planner inside MakeMyTrip that listens, connects transport, stay and local experiences into one map-led itinerary, explains every pick — and leaves every decision with the traveller.</p></header>
+    <div class="overview-trio">
+      <div><b>Listens</b><span>Starts from what you'd enjoy; reflects it back for correction; asks only for what's missing.</span></div>
+      <div><b>Connects</b><span>Transport, stay, days, budget and distance as one plan on an illustrated map.</span></div>
+      <div><b>Adapts</b><span>Swap any piece and see the impact; conflicts come with options, not dead ends.</span></div>
+    </div>
+  </div>
+
+  <section class="proto-section block" id="prototype" aria-labelledby="proto-title">
+    <div class="proto-inner">
+      <div class="proto-head">
+        <div><span class="kicker">The prototype</span><h2 id="proto-title">Plan a weekend with six friends</h2><p>Type your own trip or tap a suggestion. Everything — places, prices, times, availability and the AI's replies — is simulated in your browser. Nothing is booked or paid for.</p></div>
+        <button class="link-btn" type="button" data-back-to-case>↓ Walkthrough &amp; process</button>
+      </div>
+      <div class="proto-bar">
+        <span class="small muted">Desktop: hover a stop to preview · click for details. Touch: tap.</span>
+        <div class="proto-controls" role="group" aria-label="States lab — reviewer controls">
+          <span>States lab</span>
+          <button class="btn btn-sm btn-ghost" type="button" data-lab="conflict">Budget conflict</button>
+          <button class="btn btn-sm btn-ghost" type="button" data-lab="unavailable">Activity unavailable</button>
+          <button class="btn btn-sm btn-ghost" type="button" data-lab="unverified">Can't confirm info</button>
+          <button class="btn btn-sm btn-ghost" type="button" data-lab="maperror">Map fails</button>
+          <button class="btn btn-sm btn-ghost" type="button" data-lab="empty">Empty result</button>
+          <button class="btn btn-sm btn-ghost" type="button" data-lab="tech">Technical error</button>
+          <button class="btn btn-sm" type="button" data-lab="reset">↺ Restart</button>
+        </div>
+      </div>
+      <div id="app" class="app" aria-label="AI trip planner prototype"></div>
+      <p class="proto-foot">Conceptual map, not to scale and not for navigation · ratings are omitted because no verified source is connected · names marked "sample" are placeholders.</p>
+    </div>
+  </section>
+
+
+  <div class="stage-layout" style="margin-top:var(--s8)">
+    <nav class="toc" aria-label="Deliver sections"></nav>
+    <div class="stage-content"><div class="toc-mobile"></div>
+
+      <article class="block" id="l-walk">
+        <header><span class="kicker">Walkthrough</span><h2>Ten moments in the journey</h2><p>Each one opens the prototype at that step, with earlier steps filled from the sample scenario.</p></header>
+        <ol class="walk"><li><figure><img src="assets/illustrations/plan-next.svg" alt="" width="240" height="150"></figure><b>Conversational discovery</b><span>Describe the trip in your own words.</span><button class="link-btn small" data-proto-jump="welcome">Try it →</button></li><li><figure><img src="assets/illustrations/persona-group.svg" alt="" width="240" height="150"></figure><b>Preference interpretation</b><span>Editable chips with the words they came from.</span><button class="link-btn small" data-proto-jump="prefs">Try it →</button></li><li><figure><img src="assets/illustrations/thumb-train.svg" alt="" width="240" height="150"></figure><b>Contextual constraints</b><span>One pre-filled card; nothing asked twice.</span><button class="link-btn small" data-proto-jump="constraints">Try it →</button></li><li><figure><img src="assets/illustrations/dest-coorg.svg" alt="" width="240" height="150"></figure><b>Destination recommendations</b><span>Best match, alternative, trade-off — with reasons.</span><button class="link-btn small" data-proto-jump="destinations">Try it →</button></li><li><figure><img src="assets/illustrations/map-coorg.svg" alt="" width="240" height="150"></figure><b>Map-based itinerary</b><span>Two days on an illustrated map, linked to the list.</span><button class="link-btn small" data-proto-jump="itinerary">Try it →</button></li><li><figure><img src="assets/illustrations/thumb-homestay.svg" alt="" width="240" height="150"></figure><b>Detail on demand</b><span>Hover to preview; tap or click for everything.</span><button class="link-btn small" data-proto-jump="itinerary">Try it →</button></li><li><figure><img src="assets/illustrations/thumb-market.svg" alt="" width="240" height="150"></figure><b>Replace one component</b><span>Swap the waterfall; see the impact; confirm.</span><button class="link-btn small" data-proto-jump="replace">Try it →</button></li><li><figure><img src="assets/illustrations/thumb-hostel.svg" alt="" width="240" height="150"></figure><b>Budget conflict</b><span>What's conflicting, and three ways forward.</span><button class="link-btn small" data-proto-jump="conflict">Try it →</button></li><li><figure><img src="assets/illustrations/dest-chikmagalur.svg" alt="" width="240" height="150"></figure><b>Alternatives</b><span>Comparable options, never greyed out.</span><button class="link-btn small" data-proto-jump="destinations">Try it →</button></li><li><figure><img src="assets/illustrations/spot-deliver.svg" alt="" width="240" height="150"></figure><b>Final trip summary</b><span>Plan, costs and caveats before booking.</span><button class="link-btn small" data-proto-jump="summary">Try it →</button></li></ol>
+      </article>
+
+      <article class="block" id="l-states">
+        <header><span class="kicker">Micro-interactions &amp; states</span><h2>When things load, fail, conflict or change</h2>
+          <p>Every state keeps the plan and the traveller's inputs, says what is happening in plain words, and offers a next step. All of them can be triggered from the states lab.</p></header>
+        <div class="specimens">
+          <div class="specimen"><h4>Loading</h4><div class="frame"><div class="loader"><div class="ltitle"><span class="route-dots" aria-hidden="true"><i></i><i></i><i></i></span>Putting the pieces of your trip together…</div><ol><li class="done">Transport from Bangalore</li><li class="done">A stay that suits the group</li><li class="doing">Route &amp; travel time</li><li>Budget per person</li></ol></div></div><p>Staged, honest, cancellable — never a bare spinner.</p></div>
+          <div class="specimen"><h4>Empty result</h4><div class="frame"><div class="pref-card"><b>No suitable option in the sample data.</b><span class="tiny-note">The system worked; nothing matched.</span><div class="msg-actions"><span class="btn btn-sm">See green getaways</span><span class="btn btn-sm btn-ghost">Raise the budget</span></div></div></div><p>Different from an error — and always with a way on.</p></div>
+          <div class="specimen"><h4>Technical error</h4><div class="frame"><div class="pref-card"><p style="margin:0 0 6px"><b>We hit a small roadblock while planning.</b> Your existing itinerary is still here.</p><span class="btn btn-sm btn-primary">Try again</span></div></div><p>Calm, specific, nothing lost.</p></div>
+          <div class="specimen"><h4>Constraint conflict</h4><div class="frame"><div class="conflict-card"><h5>What's conflicting</h5><div class="conflict-bar" aria-hidden="true"><i style="width:100%"></i><b style="left:88%"></b></div><span class="tiny-note">Budget ₹7,000 ▲ · plan ₹7,950</span><div class="opt"><h6><span>Change the stay</span><span class="delta-down">₹6,800</span></h6></div></div></div><p>Names the cause, shows the gap, offers options.</p></div>
+          <div class="specimen"><h4>Successful update</h4><div class="frame"><div class="toast" style="animation:none"><span><b>Your itinerary has been updated.</b> Local food trail is in; everything else is unchanged.</span><span class="link-btn">Undo</span></div></div><p>Says what changed; the marker pulses; the budget re-counts.</p></div>
+          <div class="specimen"><h4>Undo &amp; recovery</h4><div class="frame"><div class="change-card"><h5>Here's what would change</h5><dl class="diff"><dt>Changing</dt><dd><span class="old">Abbey Falls walk</span> → <b>Local food trail</b></dd><dt>Budget</dt><dd><span class="delta-up">+₹350 pp</span></dd></dl><div class="msg-actions"><span class="btn btn-sm btn-primary">Confirm</span><span class="btn btn-sm btn-ghost">Keep original</span></div></div></div><p>Preview before, undo after.</p></div>
+        </div>
+      </article>
+
+      <article class="block" id="l-ai">
+        <header><span class="kicker">AI in the build</span><h2>Building with AI as a development partner</h2>
+          <p class="lede wide">I used AI as a collaborative design and development partner to rapidly explore possibilities, test different approaches and accelerate implementation. The central concept, design direction and final decisions remained mine.</p></header>
+        <div class="split">
+          <div>
+            <h3>What AI did in the build</h3>
+            <ul class="ruled">
+              <li><b class="t">Generated the code</b><span class="d">HTML, CSS and JavaScript for the site and the prototype; the planner's scripted logic and simulated data.</span></li>
+              <li><b class="t">Drew the illustrations</b><span class="d">The hand-painted SVGs were generated with a script to my visual reference.</span></li>
+              <li><b class="t">Tested and debugged</b><span class="d">Automated browser runs through every tab and prototype step, on desktop and phone sizes.</span></li>
+              <li><b class="t">Drafted microcopy</b><span class="d">Loading, error and conflict messages, which I edited for honesty.</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Code generated with AI</h3>
+            <pre class="prompt" style="font-family:ui-monospace,Menlo,monospace;font-style:normal;font-size:.76rem;white-space:pre-wrap;overflow-x:auto"><code>// Map ↔ itinerary sync: one ID drives both views (prototype.js)
+function applySelection(id, opts = {}) {
+  S.selected = id;
+  $$(&quot;.marker&quot;, ws).forEach((m) =&gt; m.classList.toggle(&quot;active&quot;, m.dataset.stop === id));
+  $$(&quot;.stop&quot;, ws).forEach((s) =&gt; s.classList.toggle(&quot;active&quot;, s.dataset.stop === id));
+  $$(&quot;.routes .seg&quot;, ws).forEach((p) =&gt; p.classList.toggle(&quot;hot&quot;, p.dataset.to === id));
+  ...
+}</code></pre>
+            <p class="tiny-note">The sync the map-led direction depends on — specified by me, written with AI.</p>
+          </div>
+        </div>
+        <h3 class="sub">Iterations, issues and changes — the actual record</h3>
+        <ol class="iter">
+          <li class="req"><span class="when">Iteration 1 · my request</span><b>Build the documentation and prototype from my master document and visual guide</b><p>AI produced the first static site: four Double Diamond tabs, illustrations and the simulated planner.</p></li>
+          <li class="fix"><span class="when">Issues found in testing · fixed</span><b>The map was too small; markers looked oversized</b><p>The prototype was widened and the map pane rebuilt so it keeps its proportions.</p></li>
+          <li class="fix"><span class="when">Issues found in testing · fixed</span><b>Pages scrolled sideways on phones; details were cramped</b><p>Grid fixes for narrow screens; the detail panel became a bottom sheet on touch devices.</p></li>
+          <li class="fix"><span class="when">Issue found in testing · fixed</span><b>Swapping the waterfall silently pushed the plan over budget</b><p>The change preview now warns before you confirm, and the planner offers ways to rebalance after.</p></li>
+          <li class="fix"><span class="when">Issues found in testing · fixed</span><b>Map labels overlapped markers; a temple roof read like a cross</b><p>Labels repositioned; the monastery illustration was redrawn with a round finial.</p></li>
+          <li class="req"><span class="when">Iteration 2 · my corrections</span><b>Anonymise the research; label simulations; credit AI as a collaborator</b><p>The Delhi–Jaipur account was anonymised, P2/P3 added as labelled simulations, and the AI logs rewritten around my decisions.</p></li>
+          <li class="req"><span class="when">Iteration 3 · my art direction</span><b>Make it feel authored: Fraunces + Epilogue, an editorial travel journal, a map-led planner</b><p>This version: the narrative cut by about half with the detail moved into expandable sections; the map takes about 62% of the planning area, with travel-time chips, dark long legs and a walkable-town cluster to show near and far.</p></li>
+        </ol>
+        <p class="small muted">The testing above was automated, run by AI in a headless browser. My own hands-on review of this version is still to do before submission.</p>
+        <aside class="ai-note" aria-label="AI collaboration note">
+  <div class="an-head"><span class="an-tag">With AI · actual, this project</span><span class="an-q">Implementing the prototype</span></div>
+  <div class="an-flow">
+    <div class="me"><h5>My question</h5>Can the documentation and the planner live in one coherent, deployable site?</div>
+    <div class="ai"><h5>AI exploration</h5>A static multi-file build, scripted AI logic, illustrated SVGs and automated tests.</div>
+    <div class="me"><h5>My evaluation</h5>Took forward: the structure, the visual world and the map-led prototype<br>Changed: how AI was credited; the research presentation; the art direction<br>Rejected: anything that implied AI conceived the solution</div>
+    <div class="me"><h5>Final decision</h5><b>A static site for GitHub Pages — reviewed and directed by me.</b></div>
+  </div>
+</aside>
+      </article>
+
+      <article class="block" id="l-next">
+        <header><span class="kicker">Limits &amp; next steps</span><h2>What isn't built — and what I'd do next</h2></header>
+        <div class="cols-2">
+          <div><h4>Honest limits</h4><ul class="small"><li>Not a booking system; no live prices or availability</li><li>One real research account; two simulated scenarios; two real interviews still to do</li><li>Group coordination is represented, not multi-user</li><li>The AI is scripted logic with simple keyword matching</li><li>One journey and one destination with full sample data</li><li>Styled in this project's visual system, not MakeMyTrip's own components yet</li></ul></div>
+          <div><h4>Next, with more time</h4><ol class="small"><li>Run the two real interviews; revise personas and insights</li><li>Usability-test the journey with 3–5 people</li><li>Let each friend add preferences; vote on options; per-person costs</li><li>Verified sources: ratings, reviews, live availability</li><li>Replan when weather, transport or plans change</li><li>Align with MakeMyTrip's components and hand off to booking</li></ol></div>
+        </div>
+        <details class="more"><summary>Validation plan — tasks and what to observe</summary><div class="more-body cols-2">
+          <div><h4>Tasks</h4><ol class="small"><li>Start without a destination</li><li>Correct an inferred preference</li><li>Choose a destination</li><li>Find out why a stay was picked</li><li>Replace one activity; read the budget impact</li><li>Resolve a budget conflict</li><li>Say whether the final plan feels trustworthy</li></ol></div>
+          <div><h4>Observe</h4><ul class="small"><li>Do people understand what the AI is doing?</li><li>Can they find what matters?</li><li>Does the map help them judge distance?</li><li>Do they feel in control?</li><li>Do errors give a useful next step?</li></ul></div>
+        </div></details>
+        <details class="more"><summary>Data &amp; trust rules the prototype follows</summary><div class="more-body"><ul class="small"><li>Every price is labelled simulated; availability is unverified</li><li>No invented ratings or review counts</li><li>Source labels describe where real data would come from</li><li>No booking, payment or confirmation number is ever implied</li></ul></div></details>
+        <details class="more"><summary>Interaction specifications A–H</summary><div class="more-body"><div class="table-scroll"><table class="table small"><thead><tr><th></th><th>Screen</th><th>What it must do</th><th></th></tr></thead><tbody>
+          <tr><td>A</td><td>Conversational discovery</td><td>Natural-language input; preference summary to confirm, edit or reject</td><td><button class="link-btn" data-proto-jump="prefs">Try</button></td></tr>
+          <tr><td>B</td><td>Contextual clarification</td><td>Only missing details; structured dates and budget; nothing re-asked</td><td><button class="link-btn" data-proto-jump="constraints">Try</button></td></tr>
+          <tr><td>C</td><td>Destinations</td><td>A few options; reasons, journey time, budget fit; compare</td><td><button class="link-btn" data-proto-jump="destinations">Try</button></td></tr>
+          <tr><td>D</td><td>Itinerary</td><td>Day-by-day on the map; sequence and distance considered; costs labelled</td><td><button class="link-btn" data-proto-jump="itinerary">Try</button></td></tr>
+          <tr><td>E</td><td>Detail on demand</td><td>Hover, tap, focus; evidence, source status, alternatives</td><td><button class="link-btn" data-proto-jump="itinerary">Try</button></td></tr>
+          <tr><td>F</td><td>Localised change</td><td>Impact preview; confirm; untouched parts preserved; undo</td><td><button class="link-btn" data-proto-jump="replace">Try</button></td></tr>
+          <tr><td>G</td><td>Constraint conflict</td><td>Names the conflict; two or more options; user chooses</td><td><button class="link-btn" data-proto-jump="conflict">Try</button></td></tr>
+          <tr><td>H</td><td>Final review</td><td>Plan, costs, caveats; next step to booking options</td><td><button class="link-btn" data-proto-jump="summary">Try</button></td></tr>
+        </tbody></table></div></div></details>
+        <details class="more"><summary>Design system — palette and type</summary><div class="more-body">
+          <div class="swatches">
+            <div class="swatch"><i style="background:#F8F5EE"></i><b>Warm paper</b><span>#F8F5EE · ground</span></div>
+            <div class="swatch"><i style="background:#26211D"></i><b>Ink</b><span>#26211D · text</span></div>
+            <div class="swatch"><i style="background:#FF5C34"></i><b>Topaze orange</b><span>#FF5C34 · accent</span></div>
+            <div class="swatch"><i style="background:#D7EFFF"></i><b>Cool blue</b><span>#D7EFFF · AI, water</span></div>
+            <div class="swatch"><i style="background:#AEB8A0"></i><b>Vert sauge</b><span>#AEB8A0 · nature</span></div>
+            <div class="swatch"><i style="background:#E9F056"></i><b>Wasabi</b><span>#E9F056 · highlights</span></div>
+            <div class="swatch"><i style="background:#E8C547"></i><b>Mustard</b><span>#E8C547 · secondary</span></div>
+            <div class="swatch"><i style="background:#F2DCE4"></i><b>Soft plum</b><span>#F2DCE4 · support</span></div>
+            <div class="swatch"><i style="background:#351E28"></i><b>Cassis</b><span>#351E28 · contrast</span></div>
+          </div>
+          <div class="type-spec" style="margin-top:var(--s5)">
+            <div><span class="small muted">Titles · Fraunces</span><span style="font-family:var(--serif);font-size:2rem;font-weight:330;line-height:1;font-variation-settings:'SOFT' 100,'WONK' 1">Bring the pieces together</span></div>
+            <div><span class="small muted">Body &amp; UI · Epilogue</span><span>Navigation, buttons, forms, captions, tables and the whole prototype.</span></div>
+          </div>
+          <details class="more"><summary>The Visual Guide reference</summary><div class="more-body ref-img"><img src="assets/visual-guide-reference.jpg" alt="Visual Guide moodboard: collage travel layouts, an ink-line city illustration on cream paper, an editorial travel blog, palette swatches, and a hand-painted walking map of Madrid." loading="lazy" width="1600" height="1384"></div></details>
+        </div></details>
+        <details class="more"><summary>12-hour time plan</summary><div class="more-body">
+          <div class="timeplan" role="img" aria-label="Research 1.5h, Define 1h, Explore 1.5h, UX 2h, Prototype 4h, Presentation 2h — 12 hours">
+            <div style="flex:1.5;background:var(--blue)"><b>Research</b>1.5 h</div><div style="flex:1;background:var(--sage-soft)"><b>Define</b>1 h</div><div style="flex:1.5;background:var(--mustard-soft)"><b>Explore</b>1.5 h</div><div style="flex:2;background:var(--paper-2)"><b>UX</b>2 h</div><div style="flex:4;background:var(--coral)"><b>Prototype</b>4 h</div><div style="flex:2;background:var(--plum-soft)"><b>Presentation</b>2 h</div>
+          </div></div></details>
+        <details class="more"><summary>Open items — not to be fabricated</summary><div class="more-body"><ol class="open-items">
+          <li><div><b>Two real conversations</b>Replace the P2 and P3 simulations.</div></li>
+          <li><div><b>Platform evidence</b>Dated screenshots of both walkthroughs.</div></li>
+          <li><div><b>The slow AI reply</b>Record the exact steps; repeat once before claiming more.</div></li>
+          <li><div><b>Original prompts</b>Swap them in where they exist; relabel as actual.</div></li>
+          <li><div><b>Hands-on review</b>My own pass over the AI-written code and copy.</div></li>
+          <li><div><b>Usability test</b>Even 3 people, before calling anything validated.</div></li>
+        </ol></div></details>
+        <details class="more"><summary>Submission checklist <span class="count cl-progress" id="clProgress"></span></summary><div class="more-body cols-2" id="checklist">
+          <ul class="checklist">
+            <li><input type="checkbox" id="c1"><label for="c1">Brief, personas and selection explained</label></li>
+            <li><input type="checkbox" id="c2"><label for="c2">Three directions and the choice shown</label></li>
+            <li><input type="checkbox" id="c3"><label for="c3">IA and user flow included</label></li>
+            <li><input type="checkbox" id="r1"><label for="r1">Three relevant users interviewed</label><span class="state lbl todo">1 real + 2 sim</span></li>
+            <li><input type="checkbox" id="r2"><label for="r2">Assumptions separated from findings</label></li>
+            <li><input type="checkbox" id="a1"><label for="a1">AI use shown in all four stages</label></li>
+            <li><input type="checkbox" id="a2"><label for="a2">Actual prompts captured</label><span class="state lbl todo">mostly reconstructed</span></li>
+          </ul>
+          <ul class="checklist">
+            <li><input type="checkbox" id="p1"><label for="p1">Discovery → summary journey works</label></li>
+            <li><input type="checkbox" id="p2"><label for="p2">Map ↔ list sync, hover and tap</label></li>
+            <li><input type="checkbox" id="p3"><label for="p3">Replace + budget impact + undo</label></li>
+            <li><input type="checkbox" id="p4"><label for="p4">Conflict, empty, error, loading states</label></li>
+            <li><input type="checkbox" id="p5"><label for="p5">Simulated content labelled</label></li>
+            <li><input type="checkbox" id="s1"><label for="s1">Presentation: research, directions, AI, trade-offs, limits</label></li>
+            <li><input type="checkbox" id="s2"><label for="s2">Prototype link or video</label></li>
+          </ul>
+        </div></details>
+        <details class="more" id="d-ailog-more">
+  <summary>Full AI prompt log — Deliver <span class="count">10 entries · 3 actual · 5 reconstructed · 2 future</span></summary>
+  <div class="more-body" data-ailog-block>
+    <p class="small muted">Each entry: the design question, the prompt, what was explored, what I accepted, modified and rejected, and how I decided. Reconstructed prompts represent the exploration and are not the exact historical wording; outcomes follow the decisions in the master document.</p>
+    <div class="filters" role="group" aria-label="Filter prompt log" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
+      <button class="chip" aria-pressed="true" data-ailog="all">All</button>
+      <button class="chip" aria-pressed="false" data-ailog="actual">Actual</button>
+      <button class="chip" aria-pressed="false" data-ailog="reconstructed">Reconstructed</button>
+      <button class="chip" aria-pressed="false" data-ailog="future">Future</button>
+    </div>
+    <div class="ailog"><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Structuring the information architecture</b><span>How should the planner&#x27;s screens and states be organised?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>How should the planner&#x27;s screens and states be organised?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">Turn this end-to-end flow into an information architecture for the planner, grouped by stage, with conflicts and the final summary as their own areas.</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>An eight-branch IA; navigation patterns.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>The eight branches.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Made conversation and itinerary persistent and linked, rather than separate pages.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Separate search tabs per travel category.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>The IA tree in Develop, used as the basis for the prototype.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Developing prototype flows</b><span>Which single journey shows the most within the time box?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>Which single journey shows the most within the time box?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">Which single journey would demonstrate the four brief considerations with the least build time? Include one swap and one conflict.</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Several candidate journeys; which moments to include.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>A group weekend with one localised swap and one budget conflict.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>The designer chose a Bangalore → Coorg sample scenario, clearly labelled as simulated.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Building complete journeys for all four personas.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>One polished journey with ten required moments.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Loading &amp; error states</b><span>How can waiting feel like holiday planning without hiding what&#x27;s happening?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>How can waiting feel like holiday planning without hiding what&#x27;s happening?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">Write loading and error microcopy that keeps the anticipation of planning a holiday but still says what the system is doing.</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Staged progress messages; warm copy; error wording.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>Staged loaders with travel-flavoured copy.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Removed any cute copy that obscured the actual problem.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>&quot;Almost booked&quot; style claims when nothing is being booked.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>The states table and the loaders in the prototype.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Refining interaction specifications</b><span>What exactly happens at each step?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>What exactly happens at each step?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">Turn these interaction ideas into specifications A–H with trigger, system response and states for each.</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Specs for discovery, clarification, destinations, itinerary, details, edits, conflicts and review.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>Specs A–H.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Added explicit cost and time impact plus confirmation to every edit.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Silent auto-apply of changes.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>The spec cards, each linked to a live step in the prototype.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="reconstructed">
+  <summary><span class="lbl hyp">Reconstructed prompt</span><span class="log-title"><b>Planning the map-based experience</b><span>How should the map and the itinerary work together?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>How should the map and the itinerary work together?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">My itinerary should also be a map. How should map and itinerary stay linked, and how can days be told apart without relying on colour?</div><span class="tiny-note">Reconstructed prompt representing the design exploration. Not the exact historical wording. Outcomes reflect the decisions recorded in the master document.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Shared IDs; day colours plus marker shapes; a schematic or real map library.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>Shared IDs, numbered markers, shapes per category and colours per day.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>A schematic, illustrated map labelled &quot;not to scale&quot;.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>A real map library with API keys for this scope.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>The map-led itinerary — the designer&#x27;s interface decision — built as an illustrated map synced with the list.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="actual">
+  <summary><span class="lbl real">Actual · this project</span><span class="log-title"><b>Preparing the HTML implementation</b><span>Can the documentation and prototype be built as one coherent website?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>Can the documentation and prototype be built as one coherent website?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">Read the Markdown file provided in detail and do as is needed for the documentation part as suggested. Do the tool part, along with the process as mentioned in detail. Follow the style guide that has been attached for visual reference, and follow the Markdown file. Give me the entire thing so we can preview this, and also give me the HTML code as mentioned in the Markdown file as required.</div><span class="tiny-note">Actual prompt from this project's AI session (15 Nov 2026), quoted from the designer's own instructions.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>A static, multi-file site: four Double Diamond tabs, an illustrated visual system, and a simulated prototype with a linked map.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>The structure, visual direction, map concept and prototype requirements — kept in the follow-up.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>How AI involvement was described: changed from AI-centred to collaboration; the research account anonymised; simulated interviews added.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Any framing where AI appears to have conceived the solution.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>This V03 update. The AI-written code still needs the designer&#x27;s own review before submission.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="actual">
+  <summary><span class="lbl real">Actual · this project</span><span class="log-title"><b>Correcting how AI is credited</b><span>Does the documentation show who actually led the design?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>Does the documentation show who actually led the design?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">Do not portray AI as having independently conceived the entire solution. The documentation should communicate that I was leading the design process, while AI supported exploration, critique, iteration and execution.</div><span class="tiny-note">Actual prompt from this project's AI session (15 Nov 2026), quoted from the designer's own instructions.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Ownership statements; reconstructed prompt logs; a reflection on AI&#x27;s role.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>A human-led, AI-assisted framing throughout.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>Every prompt is labelled actual, reconstructed or future.</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Inventing exact historical prompts.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>The ownership panel, these logs and the reflection section.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="actual">
+  <summary><span class="lbl real">Actual · this project</span><span class="log-title"><b>Art-directing the V04 refinement</b><span>Does the case study look and read like it was authored by a designer?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>Does the case study look and read like it was authored by a designer?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">This is a refinement of my existing work, not a request to independently redesign or reinvent the entire concept. Preserve the central idea, design direction, research, decisions and interactions already established. Improve the visual execution, information hierarchy, storytelling and overall quality.</div><span class="tiny-note">Actual prompt from this project's AI session (15 Nov 2026), quoted from the designer's own instructions.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>An editorial travel-journal layout; Fraunces and Epilogue only; fewer cards and pills; a map-led planning area; a narrative cut by roughly half with detail moved into expandable sections.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>The designer&#x27;s art direction as the brief for this version.</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>AI translated it into layout, type and component decisions, and added distance cues to the map (travel-time chips, dark long legs, a walkable-town cluster).</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>Replacing the illustrations or the concept; adding fonts or libraries.</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>V04 of this site. The concept, research and decisions are unchanged; the designer reviews the result.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="future">
+  <summary><span class="lbl prop">Future prompt</span><span class="log-title"><b>Usability test synthesis</b><span>What did testing show about trust and control?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>What did testing show about trust and control?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">Here are my notes from testing the prototype with [n] people. For each task, summarise where people hesitated or misunderstood, using only the notes. Separate what they did from what they said.</div><span class="tiny-note">Proposed for the next round of work. Not yet run; no outcomes are claimed.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Not yet run.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>—</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>—</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>—</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>To be decided after testing.</dd></div>
+  </dl>
+</details><details class="log-entry" data-type="future">
+  <summary><span class="lbl prop">Future prompt</span><span class="log-title"><b>Aligning with MakeMyTrip&#x27;s visual language</b><span>How should the prototype adapt to the host platform?</span></span></summary>
+  <dl class="log-dl">
+    <div class="log-row "><dt><span class="n">1</span>Design question</dt><dd>How should the prototype adapt to the host platform?</dd></div>
+    <div class="log-row"><dt><span class="n">2</span>Prompt</dt><dd><div class="prompt">Here are dated screenshots of MakeMyTrip&#x27;s holiday flow. List the components, type and colour patterns I should reuse, and where the AI planner needs something new.</div><span class="tiny-note">Proposed for the next round of work. Not yet run; no outcomes are claimed.</span></dd></div>
+    <div class="log-row "><dt><span class="n">3</span>Possibilities explored</dt><dd>Not yet run.</dd></div>
+    <div class="log-row acc"><dt><span class="n">4</span>Accepted</dt><dd>—</dd></div>
+    <div class="log-row mod"><dt><span class="n">5</span>Modified</dt><dd>—</dd></div>
+    <div class="log-row rej"><dt><span class="n">6</span>Rejected</dt><dd>—</dd></div>
+    <div class="log-row dec"><dt><span class="n">7</span>Final decision</dt><dd>To be decided.</dd></div>
+  </dl>
+</details></div>
+  </div>
+</details>
+      </article>
+
+      <article class="block" id="l-reflection">
+        <header><span class="kicker">Reflection</span><h2>AI as a design collaborator, not a design replacement</h2></header>
+        <p class="reflection-quote">The problem, the opportunity and the direction came from my observations and travel experience. AI widened what I could consider and sped up the build — every decision went back to the brief, the research and my judgement.</p>
+        <div class="cols-2">
+          <div><h4>Where AI helped</h4><ul class="small"><li><b>Breadth</b> — rival directions and interaction options to test mine against</li><li><b>Blind spots</b> — touch and keyboard access, error vs conflict, the solo-safety angle</li><li><b>Challenge</b> — arguing against my persona choice; simulations questioning conversation-first</li><li><b>Structure</b> — flows into IA; notes into consistent logs and specs</li><li><b>Speed</b> — code, illustrations and testing within the time box</li></ul></div>
+          <div><h4>Where it fell short — and what I did</h4><ul class="small"><li><b>It can't do research</b> — simulations stay labelled; real interviews remain open</li><li><b>It fills gaps confidently</b> — invented backstories and measured-looking scores were cut</li><li><b>It drifts to the generic</b> — chatbot-only flows and cute error copy were rejected; this version's art direction replaced a generic look</li><li><b>It optimises for automation</b> — keeping approval with the traveller was my call</li><li><b>Its code needs review</b> — still on my list</li></ul></div>
+        </div>
+      </article>
+
+      <section class="closing" aria-labelledby="closing-title">
+        <span class="kicker">Closing</span>
+        <h2 id="closing-title">From searching for a trip to having a trip thoughtfully put together.</h2>
+        <p>The aim isn't to make AI decide how people travel. It's to make planning less fragmented — so people can spend more time looking forward to the trip itself.</p>
+      </section>
+
+      <div class="stage-next"><button type="button" data-go="develop"><span>Previous</span><b>← 03 Develop</b></button><button type="button" data-go="discover" style="text-align:right"><span>Back to the beginning</span><b>01 Discover →</b></button></div>
+    </div>
+  </div>
+
+</section>
+
+</div><!-- /#stages -->
+</main>
+<footer class="site-footer"><div class="wrap"><span>Razorpay Design × NID · AI travel planner case study · V04 · human-led, AI-assisted</span><span>All prototype data simulated · no bookings, payments or live integrations</span></div></footer>
+<div class="peek" id="peek" aria-hidden="true"></div>
+<script src="scripts/app.js"></script>
+<script src="scripts/documentation.js"></script>
+<script src="scripts/prototype.js"></script>
+</body>
+</html>
