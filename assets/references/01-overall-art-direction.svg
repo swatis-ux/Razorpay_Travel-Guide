@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1000" viewBox="0 0 1440 1000">
+<title>Overall art direction</title><desc>Editorial illustrated travel website art direction</desc>
+<defs>
+ <pattern id="grain" width="120" height="120" patternUnits="userSpaceOnUse">
+  <circle cx="12" cy="18" r="0.8" fill="#8C826F" opacity=".13"/>
+  <circle cx="73" cy="42" r="0.65" fill="#8C826F" opacity=".12"/>
+  <circle cx="38" cy="94" r="0.7" fill="#8C826F" opacity=".10"/>
+  <path d="M92 12l3 1M20 65l4 -1M104 83l3 1" stroke="#8C826F" stroke-width=".6" opacity=".10"/>
+ </pattern>
+ <style>
+  .display{font-family:'Fraunces','Georgia',serif;font-weight:500;letter-spacing:-1.6px}
+  .body{font-family:'Epilogue','Arial',sans-serif}
+  .eyebrow{font-family:'Epilogue','Arial',sans-serif;font-size:13px;letter-spacing:2px;font-weight:600}
+  .ink{fill:#292821}.muted{fill:#777468}
+  .stroke{stroke:#292821;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+  .fine{stroke:#292821;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+  .panel{fill:#FFFDF8;stroke:#D9D2C4;stroke-width:1}
+ </style>
+</defs>
+<rect width="100%" height="100%" fill="#F7F3EA"/>
+<rect width="100%" height="100%" fill="url(#grain)"/>
+
+<text x="72" y="76" class="eyebrow" fill="#465C48">DESIGN DIRECTION / 01</text>
+<text x="72" y="145" class="display ink" font-size="64">An illustrated travel editorial</text>
+<text x="74" y="184" class="body muted" font-size="19">A composed, grown-up visual system: art-directed, tactile and quietly playful.</text>
+<rect x="72" y="224" width="1296" height="410" rx="3" fill="#FFFDF8" stroke="#D9D2C4"/>
+<!-- editorial hero scene -->
+<rect x="72" y="224" width="1296" height="410" fill="#E8E4D7"/>
+<circle cx="1130" cy="328" r="68" fill="#D9B75D" opacity=".9"/>
+<path d="M72 520 C250 430 340 470 500 410 C660 350 780 430 920 380 C1080 320 1200 380 1368 330 L1368 634 L72 634Z" fill="#9BAE91"/>
+<path d="M72 560 C250 500 390 540 540 485 C730 420 850 505 1020 450 C1170 400 1260 460 1368 420 L1368 634 L72 634Z" fill="#465C48"/>
+<path d="M160 520 L160 365 L300 365 L300 520Z" fill="#C87555"/>
+<path d="M145 365 L230 300 L315 365Z" fill="#B8644B"/>
+<rect x="185" y="410" width="34" height="54" fill="#F7F3EA"/><rect x="240" y="410" width="34" height="54" fill="#F7F3EA"/>
+<path d="M1040 512 Q1050 435 1110 430 Q1170 432 1180 512Z" fill="#A8C2C5"/>
+<path d="M1080 512 Q1088 462 1110 460 Q1135 464 1140 512" fill="none" stroke="#465C48" stroke-width="4"/>
+<path d="M500 565 C620 540 760 545 890 520" stroke="#D9B75D" stroke-width="5" fill="none" stroke-dasharray="4 13" stroke-linecap="round"/>
+<circle cx="500" cy="565" r="10" fill="#C87555" stroke="#FFFDF8" stroke-width="4"/>
+<circle cx="890" cy="520" r="10" fill="#C87555" stroke="#FFFDF8" stroke-width="4"/>
+<text x="112" y="274" class="eyebrow" fill="#465C48">A SLOWER WAY TO PLAN</text>
+<text x="112" y="324" class="display" font-size="43" fill="#292821">Find your kind</text>
+<text x="112" y="369" class="display" font-size="43" fill="#292821">of elsewhere.</text>
+<text x="112" y="405" class="body" font-size="14" fill="#292821">Thoughtful recommendations. A trip that feels like yours.</text>
+<rect x="112" y="435" width="160" height="43" rx="21" fill="#465C48"/>
+<text x="192" y="462" class="body" text-anchor="middle" font-size="13" fill="white">Start planning ↗</text>
+<!-- principles -->
+<text x="72" y="704" class="eyebrow" fill="#465C48">THE VISUAL RULES</text>
+<text x="72" y="754" class="body ink" font-size="15" font-weight="700">01 / EDITORIAL</text><text x="72" y="786" class="body muted" font-size="13">Strong typography, clear hierarchy, generous margins.</text><text x="402" y="754" class="body ink" font-size="15" font-weight="700">02 / ILLUSTRATED</text><text x="402" y="786" class="body muted" font-size="13">Purposeful scenes, restrained detail, consistent outlines.</text><text x="732" y="754" class="body ink" font-size="15" font-weight="700">03 / TACTILE</text><text x="732" y="786" class="body muted" font-size="13">Paper warmth, subtle grain, quiet imperfect edges.</text><text x="1062" y="754" class="body ink" font-size="15" font-weight="700">04 / FUNCTIONAL</text><text x="1062" y="786" class="body muted" font-size="13">Legible controls, predictable behaviour, no visual clutter.</text><text x="72" y="890" class="body muted" font-size="14">Avoid: childish cartoon characters, thick black outlines, sticker-like icons, random doodles, loud gradients and dashboard-heavy cards.</text>
+</svg>

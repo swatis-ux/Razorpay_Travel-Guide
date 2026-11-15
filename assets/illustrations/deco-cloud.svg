@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 110" aria-hidden="true"><title></title><defs>
+  <filter id="pig" x="-3%" y="-3%" width="106%" height="106%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="31" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="35" result="m"/>
+    <feColorMatrix in="m" type="matrix" values="0 0 0 0 0.18  0 0 0 0 0.15  0 0 0 0 0.1  0.17 0 0 0 -0.065" result="mc"/>
+    <feComposite in="mc" in2="d" operator="in" result="mi"/>
+    <feMerge><feMergeNode in="d"/><feMergeNode in="mi"/></feMerge>
+  </filter>
+  <filter id="hand" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="33" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.1" xChannelSelector="R" yChannelSelector="G"/></filter>
+</defs><g filter="url(#pig)" fill="#FFFDF8" opacity="0.85"><path d="M70,90 c-52.8,0 -61.6,-48.4 -13.2,-57.2 c13.2,-39.6 79.2,-44 96.8,-8.8 c35.2,-22 88,-4.4 74.8,35.2 c35.2,8.8 26.4,30.8 0,30.8 Z"/></g></svg>

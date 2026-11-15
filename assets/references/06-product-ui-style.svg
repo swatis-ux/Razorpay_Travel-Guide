@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1000" viewBox="0 0 1440 1000">
+<title>Product UI style</title><desc>Travel planner product UI styling reference</desc>
+<defs>
+ <pattern id="grain" width="120" height="120" patternUnits="userSpaceOnUse">
+  <circle cx="12" cy="18" r="0.8" fill="#8C826F" opacity=".13"/>
+  <circle cx="73" cy="42" r="0.65" fill="#8C826F" opacity=".12"/>
+  <circle cx="38" cy="94" r="0.7" fill="#8C826F" opacity=".10"/>
+  <path d="M92 12l3 1M20 65l4 -1M104 83l3 1" stroke="#8C826F" stroke-width=".6" opacity=".10"/>
+ </pattern>
+ <style>
+  .display{font-family:'Fraunces','Georgia',serif;font-weight:500;letter-spacing:-1.6px}
+  .body{font-family:'Epilogue','Arial',sans-serif}
+  .eyebrow{font-family:'Epilogue','Arial',sans-serif;font-size:13px;letter-spacing:2px;font-weight:600}
+  .ink{fill:#292821}.muted{fill:#777468}
+  .stroke{stroke:#292821;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+  .fine{stroke:#292821;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+  .panel{fill:#FFFDF8;stroke:#D9D2C4;stroke-width:1}
+ </style>
+</defs>
+<rect width="100%" height="100%" fill="#F7F3EA"/>
+<rect width="100%" height="100%" fill="url(#grain)"/>
+
+<text x="72" y="76" class="eyebrow" fill="#465C48">PRODUCT UI / 06</text>
+<text x="72" y="145" class="display ink" font-size="60">Editorial, but usable</text>
+<text x="74" y="184" class="body muted" font-size="18">The planning interface must remain calm, legible and efficient.</text>
+<rect x="72" y="230" width="1296" height="650" class="panel"/>
+<text x="112" y="286" class="eyebrow" fill="#465C48">YOUR TRIP, TAKING SHAPE</text>
+<text x="112" y="350" class="display ink" font-size="48">A few days in the hills.</text>
+<text x="112" y="388" class="body muted" font-size="15">A considered route, with enough room to change your mind.</text>
+<rect x="112" y="430" width="450" height="62" rx="2" fill="#FFFDF8" stroke="#D9D2C4"/>
+<text x="138" y="468" class="body muted" font-size="14">Tell us what kind of trip you have in mind…</text>
+<rect x="575" y="430" width="145" height="62" rx="2" fill="#465C48"/>
+<text x="647" y="468" class="body" text-anchor="middle" font-size="14" fill="white">Explore ↗</text>
+<line x1="112" y1="540" x2="1320" y2="540" stroke="#D9D2C4"/>
+<text x="112" y="590" class="eyebrow" fill="#465C48">A ROUTE TO CONSIDER</text>
+<rect x="112" y="620" width="500" height="210" fill="#E8E4D7"/>
+<path d="M112 760 Q250 650 370 730 Q490 640 612 710 L612 830 L112 830Z" fill="#9BAE91"/>
+<path d="M112 795 Q250 735 390 785 Q510 730 612 780 L612 830 L112 830Z" fill="#465C48"/>
+<path d="M180 780 Q300 700 450 750" stroke="#D9B75D" stroke-width="4" fill="none" stroke-dasharray="3 10"/>
+<circle cx="180" cy="780" r="8" fill="#C87555"/><circle cx="450" cy="750" r="8" fill="#C87555"/>
+<text x="660" y="660" class="display ink" font-size="30">Day 01 · Arrive & settle in</text>
+<text x="660" y="700" class="body muted" font-size="14">A relaxed first day with time to explore locally.</text>
+<line x1="660" y1="735" x2="1290" y2="735" stroke="#D9D2C4"/>
+<circle cx="680" cy="780" r="7" fill="#C87555"/>
+<text x="705" y="786" class="body ink" font-size="15">Local market walk</text>
+<text x="1290" y="786" text-anchor="end" class="body muted" font-size="13">View details ↗</text>
+<text x="112" y="858" class="body muted" font-size="13">Use simple borders, open space and editorial type. Keep controls conventional and accessible.</text>
+
+</svg>

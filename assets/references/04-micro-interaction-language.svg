@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1000" viewBox="0 0 1440 1000">
+<title>Micro interaction language</title><desc>Micro interaction and motion design reference</desc>
+<defs>
+ <pattern id="grain" width="120" height="120" patternUnits="userSpaceOnUse">
+  <circle cx="12" cy="18" r="0.8" fill="#8C826F" opacity=".13"/>
+  <circle cx="73" cy="42" r="0.65" fill="#8C826F" opacity=".12"/>
+  <circle cx="38" cy="94" r="0.7" fill="#8C826F" opacity=".10"/>
+  <path d="M92 12l3 1M20 65l4 -1M104 83l3 1" stroke="#8C826F" stroke-width=".6" opacity=".10"/>
+ </pattern>
+ <style>
+  .display{font-family:'Fraunces','Georgia',serif;font-weight:500;letter-spacing:-1.6px}
+  .body{font-family:'Epilogue','Arial',sans-serif}
+  .eyebrow{font-family:'Epilogue','Arial',sans-serif;font-size:13px;letter-spacing:2px;font-weight:600}
+  .ink{fill:#292821}.muted{fill:#777468}
+  .stroke{stroke:#292821;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+  .fine{stroke:#292821;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+  .panel{fill:#FFFDF8;stroke:#D9D2C4;stroke-width:1}
+ </style>
+</defs>
+<rect width="100%" height="100%" fill="#F7F3EA"/>
+<rect width="100%" height="100%" fill="url(#grain)"/>
+
+<text x="72" y="76" class="eyebrow" fill="#465C48">MOTION LANGUAGE / 04</text>
+<text x="72" y="145" class="display ink" font-size="60">Small, tactile interactions</text>
+<text x="74" y="184" class="body muted" font-size="18">Motion should clarify state, reward attention and never delay a task.</text>
+<rect x="72" y="250" width="610" height="150" class="panel"/><text x="98" y="292" class="eyebrow" fill="#465C48">HOVER / REVEAL</text><text x="98" y="332" class="body ink" font-size="16">Illustration detail shifts 3–5 px; underline draws in.</text><rect x="722" y="250" width="610" height="150" class="panel"/><text x="748" y="292" class="eyebrow" fill="#465C48">SELECT / CONFIRM</text><text x="748" y="332" class="body ink" font-size="16">Soft colour fill; marker settles with a short ease.</text><rect x="72" y="440" width="610" height="150" class="panel"/><text x="98" y="482" class="eyebrow" fill="#465C48">EXPAND / COLLAPSE</text><text x="98" y="522" class="body ink" font-size="16">Content opens in place; surrounding layout moves naturally.</text><rect x="722" y="440" width="610" height="150" class="panel"/><text x="748" y="482" class="eyebrow" fill="#465C48">LOADING / THINKING</text><text x="748" y="522" class="body ink" font-size="16">Three quiet dots or a drawn route line; no bouncing mascots.</text><rect x="72" y="630" width="610" height="150" class="panel"/><text x="98" y="672" class="eyebrow" fill="#465C48">SUCCESS / SAVED</text><text x="98" y="712" class="body ink" font-size="16">Small checkmark draw-on; brief colour wash, then rest.</text><rect x="722" y="630" width="610" height="150" class="panel"/><text x="748" y="672" class="eyebrow" fill="#465C48">MAP / ITINERARY</text><text x="748" y="712" class="body ink" font-size="16">Selected stop gently enlarges; matching list row highlights.</text>
+<text x="72" y="850" class="eyebrow" fill="#465C48">MOTION RULES</text>
+<text x="72" y="890" class="body ink" font-size="14">Duration: 160–280 ms for UI · 400–700 ms for editorial reveals · use ease-out · respect prefers-reduced-motion.</text>
+<text x="72" y="920" class="body muted" font-size="14">Avoid: constant floating, springy overshoot, excessive scroll-jacking, cursor gimmicks and animation on every element.</text>
+
+</svg>

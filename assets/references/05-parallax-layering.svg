@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1000" viewBox="0 0 1440 1000">
+<title>Parallax layering</title><desc>Parallax and scroll storytelling reference</desc>
+<defs>
+ <pattern id="grain" width="120" height="120" patternUnits="userSpaceOnUse">
+  <circle cx="12" cy="18" r="0.8" fill="#8C826F" opacity=".13"/>
+  <circle cx="73" cy="42" r="0.65" fill="#8C826F" opacity=".12"/>
+  <circle cx="38" cy="94" r="0.7" fill="#8C826F" opacity=".10"/>
+  <path d="M92 12l3 1M20 65l4 -1M104 83l3 1" stroke="#8C826F" stroke-width=".6" opacity=".10"/>
+ </pattern>
+ <style>
+  .display{font-family:'Fraunces','Georgia',serif;font-weight:500;letter-spacing:-1.6px}
+  .body{font-family:'Epilogue','Arial',sans-serif}
+  .eyebrow{font-family:'Epilogue','Arial',sans-serif;font-size:13px;letter-spacing:2px;font-weight:600}
+  .ink{fill:#292821}.muted{fill:#777468}
+  .stroke{stroke:#292821;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+  .fine{stroke:#292821;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+  .panel{fill:#FFFDF8;stroke:#D9D2C4;stroke-width:1}
+ </style>
+</defs>
+<rect width="100%" height="100%" fill="#F7F3EA"/>
+<rect width="100%" height="100%" fill="url(#grain)"/>
+
+<text x="72" y="76" class="eyebrow" fill="#465C48">SCROLL STORYTELLING / 05</text>
+<text x="72" y="145" class="display ink" font-size="60">Parallax, used with restraint</text>
+<text x="74" y="184" class="body muted" font-size="18">Depth belongs to the illustrated story, not to essential controls or reading content.</text>
+<rect x="72" y="230" width="820" height="570" class="panel"/>
+<text x="104" y="274" class="eyebrow" fill="#465C48">LAYERED SCENE / SCROLL DEPTH</text>
+<circle cx="710" cy="380" r="54" fill="#D9B75D"/>
+<path d="M104 570 Q260 390 430 500 Q620 360 860 510 L860 760 L104 760Z" fill="#A8C2C5"/>
+<path d="M104 620 Q300 490 480 590 Q650 480 860 600 L860 760 L104 760Z" fill="#9BAE91"/>
+<path d="M104 680 Q320 590 510 660 Q690 600 860 680 L860 760 L104 760Z" fill="#465C48"/>
+<path d="M280 600 L280 465 L390 465 L390 600Z" fill="#C87555"/>
+<path d="M265 465 L335 410 L405 465Z" fill="#B8644B"/>
+<path d="M560 700 Q570 640 620 630 Q670 640 680 700" fill="#F7F3EA" opacity=".8"/>
+<text x="930" y="275" class="eyebrow" fill="#465C48">LAYER</text>
+<circle cx="956" cy="330" r="13" fill="#D9B75D"/><text x="985" y="335" class="body ink" font-size="15">01 · Sky / sun</text><text x="985" y="358" class="body muted" font-size="12">0.15× scroll speed</text><circle cx="956" cy="418" r="13" fill="#A8C2C5"/><text x="985" y="423" class="body ink" font-size="15">02 · Far hills</text><text x="985" y="446" class="body muted" font-size="12">0.30× scroll speed</text><circle cx="956" cy="506" r="13" fill="#9BAE91"/><text x="985" y="511" class="body ink" font-size="15">03 · Midground</text><text x="985" y="534" class="body muted" font-size="12">0.55× scroll speed</text><circle cx="956" cy="594" r="13" fill="#465C48"/><text x="985" y="599" class="body ink" font-size="15">04 · Foreground</text><text x="985" y="622" class="body muted" font-size="12">0.80× scroll speed</text><circle cx="956" cy="682" r="13" fill="#292821"/><text x="985" y="687" class="body ink" font-size="15">05 · Text / controls</text><text x="985" y="710" class="body muted" font-size="12">1.00× normal flow</text>
+<text x="930" y="810" class="eyebrow" fill="#465C48">USE ON</text>
+<text x="930" y="846" class="body ink" font-size="14">Hero landscapes, section transitions,</text>
+<text x="930" y="870" class="body ink" font-size="14">destination illustrations.</text>
+<text x="72" y="870" class="body muted" font-size="14">Keep parallax subtle, pointer-independent, mobile-safe and disabled when reduced motion is preferred.</text>
+
+</svg>

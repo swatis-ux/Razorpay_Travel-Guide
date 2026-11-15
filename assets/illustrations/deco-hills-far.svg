@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 260" aria-hidden="true"><title></title><defs>
+  <filter id="pig" x="-3%" y="-3%" width="106%" height="106%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="23" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="27" result="m"/>
+    <feColorMatrix in="m" type="matrix" values="0 0 0 0 0.18  0 0 0 0 0.15  0 0 0 0 0.1  0.17 0 0 0 -0.065" result="mc"/>
+    <feComposite in="mc" in2="d" operator="in" result="mi"/>
+    <feMerge><feMergeNode in="d"/><feMergeNode in="mi"/></feMerge>
+  </filter>
+  <filter id="hand" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="25" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.1" xChannelSelector="R" yChannelSelector="G"/></filter>
+</defs><g filter="url(#pig)" fill="#A8C2C5" opacity="0.9"><path d="M0,150 C110,150 110,70 220,70 C370,70 370,130 520,130 C670,130 670,60 820,60 C970,60 970,120 1120,120 C1270,120 1270,50 1420,50 C1510,50 1510,150 1600,150 L1600,260 L0,260 Z"/></g></svg>

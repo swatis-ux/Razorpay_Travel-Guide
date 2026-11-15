@@ -1,0 +1,305 @@
+/* =====================================================================
+   prototype-simplified.css — the trip planner
+   Simplified, single-scroll prototype, styled to 06-product-ui-style.svg:
+   "editorial, but usable" — calm, legible, efficient; simple borders, open space,
+   editorial type; conventional, accessible controls. Loaded AFTER main.css;
+   this is the only place the planner is styled (main.css keeps tokens, buttons, chips, keyframes).
+
+   Three stages in one connected workspace (see scripts/prototype.js):
+     .tell     1 Tell us   — one prompt, one question at a time, "Your trip so far"
+     .explore  2 Explore   — trip bar · picks · map + planner + day plan
+     .review   3 Review    — one summary, one way back
+   No inner scroll areas: the page is the only scroll.
+   ===================================================================== */
+:root {
+  /* the planner's tokens, mapped onto the board palette (03-type-colour-layout.svg) */
+  --travel-paper: var(--paper);
+  --travel-paper-light: var(--panel-c);
+  --travel-sage: var(--sage);
+  --travel-forest: var(--forest);
+  --travel-terracotta: var(--terracotta);
+  --travel-mustard: var(--mustard);
+  --travel-sky: var(--sky);
+  --travel-ink: var(--ink-c);
+  --travel-line: var(--line);
+  --travel-line-soft: #E6E0D3;
+}
+
+/* ------------------------------------------------------------- frame */
+.app { background: var(--travel-paper-light); border: 1px solid var(--travel-line); border-radius: 3px; overflow: hidden; position: relative; }
+.app .chip { background: var(--travel-paper-light); white-space: normal; text-align: left; }
+
+.app-top { display: flex; align-items: center; gap: var(--s4); flex-wrap: wrap; padding: 16px 24px; background: var(--travel-paper-light); border-bottom: 1px solid var(--travel-line); }
+.app-top .logo { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-size: 1.25rem; font-weight: 500; letter-spacing: -.01em; color: var(--travel-ink); }
+.app-top .logo i { width: 10px; height: 10px; background: var(--travel-terracotta); border-radius: 50%; display: inline-block; }
+
+/* the one progress indicator: Tell us → Explore → Review */
+.steps { list-style: none; margin: 0 0 0 auto; padding: 0; display: flex; align-items: center; gap: 2px; }
+.steps li { margin: 0; display: flex; align-items: center; }
+.steps li + li::before { content: ""; width: 22px; height: 1px; background: var(--line-strong); margin: 0 6px; }
+.steps button { position: relative; border: 0; background: none; padding: 6px 4px; font-size: .78rem; font-weight: 600; letter-spacing: .02em; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; transition: color var(--t-ui) var(--ease); }
+.steps button span { width: 20px; height: 20px; border-radius: 50%; border: 1px solid currentColor; display: grid; place-items: center; font-size: .66rem; transition: background-color var(--t-ui) var(--ease), border-color var(--t-ui) var(--ease), color var(--t-ui) var(--ease); }
+.steps li.done button { color: var(--travel-forest); }
+.steps li.done button span { background: var(--travel-sage); border-color: var(--travel-sage); color: var(--travel-paper-light); }
+.steps li.on button { color: var(--travel-ink); }
+.steps li.on button span { background: var(--travel-forest); border-color: var(--travel-forest); color: var(--travel-paper-light); }
+.steps li.on button::after { content: ""; position: absolute; left: 32px; right: 4px; bottom: 0; height: 1px; background: var(--travel-ink); }
+.steps button:disabled { cursor: default; opacity: .55; }
+
+.app-main { min-height: 420px; }
+
+/* ------------------------------------------------------------- shared pieces */
+.said { margin: 0 0 6px; font-size: .82rem; color: var(--muted); font-style: italic; max-width: 60ch; }
+.said span { font-style: normal; font-size: .62rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--travel-forest); margin-right: 8px; }
+.say p { margin: 0 0 6px; max-width: 62ch; }
+.say p:last-child { margin-bottom: 0; }
+.say h3 { margin: 0 0 6px; font-size: clamp(1.6rem, 1.15rem + 1.5vw, 2.4rem); font-weight: 500; letter-spacing: -.025em; }
+.aside { margin: 0; color: var(--ink-2); font-size: .94rem; }
+.say-actions, .go-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.thinking { display: flex; align-items: center; gap: 10px; margin: 0; font-family: var(--serif); font-style: italic; color: var(--travel-forest); }
+.quick { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; }      /* suggestions wrap — never a sideways scroll */
+.quick .chip { font-size: .8rem; }
+/* the input — a plain field and a forest button, as on the product board */
+.composer { display: flex; gap: 0; margin-top: 14px; }
+.composer input { flex: 1; min-width: 0; border: 1px solid var(--line-strong); border-right: 0; border-radius: 2px 0 0 2px; padding: 14px 16px; background: var(--travel-paper-light); font-size: .94rem; transition: border-color var(--t-ui) var(--ease); }
+.composer input:focus { outline: none; border-color: var(--travel-forest); box-shadow: inset 0 0 0 1px var(--travel-forest); }
+.composer .send { flex: none; min-width: 52px; border-radius: 0 2px 2px 0; background: var(--travel-forest); border: 1px solid var(--travel-forest); color: var(--travel-paper-light); font-size: 1.05rem; transition: background-color var(--t-ui) var(--ease); }
+.composer .send:hover { background: var(--forest-deep); }
+.route-dots { display: inline-flex; gap: 5px; }
+.route-dots i { width: 5px; height: 5px; border-radius: 50%; background: var(--travel-forest); animation: hop 1.2s infinite var(--ease); }
+.route-dots i:nth-child(2) { animation-delay: .2s; } .route-dots i:nth-child(3) { animation-delay: .4s; }
+.tag { display: inline-block; font-size: .58rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 2px 6px; border: 1px solid var(--line-strong); border-radius: 2px; white-space: nowrap; color: var(--ink-2); }
+.tag.sim { background: var(--plum-soft); color: var(--brown); border-color: #CDBBA9; }
+.tag.opt { background: var(--mustard-soft); border-style: dashed; border-color: var(--mustard-text); color: var(--mustard-text); }
+.tag.unv { background: var(--paper-2); color: var(--muted); border-style: dashed; }
+.tag.warn { background: var(--terra-soft); color: var(--terra-text); border-color: var(--terra-text); }
+.delta-up { color: var(--terra-text); font-weight: 600; }
+.delta-down { color: var(--sage-text); font-weight: 600; }
+.kicker-in { font-size: .66rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--travel-forest); }
+/* saved: a checkmark draws on, the line washes once, then rests */
+.check { display: inline-block; width: 15px; height: 15px; margin: 0 6px -2px 0; }
+.check path { fill: none; stroke: var(--travel-forest); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; --len: 1; animation: draw 280ms var(--ease) 80ms forwards; }
+.planner.saved .say > p:first-child { animation: glow 700ms var(--ease); border-radius: 2px; }
+
+/* ------------------------------------------------------------- 1 · TELL US */
+.tell { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; padding: clamp(20px, 3.5vw, 48px); }
+.tell-art { margin: 0; border-radius: 3px; overflow: hidden; }
+.tell-art img { width: 100%; height: auto; }
+.tell-talk { max-width: 560px; }
+.notes { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--travel-line); }
+.notes h4 { margin-bottom: 10px; color: var(--travel-forest); }
+.notes dl { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px 16px; margin: 0; }
+.notes dl > div { margin: 0; }
+.notes dt { font-size: .6rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.notes dd { margin: 2px 0 0; font-size: .9rem; font-weight: 600; }
+.notes .missing dd { color: var(--line-strong); font-weight: 400; }
+.notes .likes { grid-column: 1 / -1; }
+.notes .likes dd { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-weight: 400; }
+.pref-list { display: contents; }
+.pref { display: inline-flex; align-items: center; gap: 2px; padding: 3px 3px 3px 10px; border: 1px solid #C3CEBB; background: var(--sage-soft); border-radius: 2px; font-size: .78rem; font-weight: 600; transition: background-color var(--t-ui) var(--ease); }
+.pref.inferred { background: var(--sky-soft); border-style: dashed; border-color: #AFC3C5; }
+.pref button { border: 0; background: transparent; width: 20px; height: 20px; border-radius: 2px; font-size: 14px; line-height: 1; display: grid; place-items: center; transition: background-color var(--t-ui) var(--ease), color var(--t-ui) var(--ease); }
+.pref button:hover { background: var(--travel-ink); color: var(--travel-paper-light); }
+.pref-add input { width: 92px; border: 1px dashed var(--line-strong); background: transparent; border-radius: 2px; padding: 3px 10px; font-size: .78rem; transition: width var(--t-ui-slow) var(--ease); }
+.pref-add input:focus { width: 180px; outline: none; border-style: solid; background: var(--travel-paper-light); }
+
+/* building the trip — the route draws itself; steps tick off; cancellable */
+.building { text-align: center; padding: clamp(36px, 6vw, 72px) 20px clamp(60px, 8vw, 100px); display: grid; justify-items: center; gap: 12px; }
+.build-route { width: min(560px, 92%); height: auto; overflow: visible; }
+.build-route .draw { fill: none; stroke: #fff; stroke-width: 12; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; --len: 1; animation: draw 1900ms var(--ease) forwards; }
+.build-route .dots { fill: none; stroke: var(--travel-mustard); stroke-width: 3.2; stroke-dasharray: 2 9; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.build-route .pin { fill: var(--travel-terracotta); stroke: var(--travel-paper-light); stroke-width: 3; vector-effect: non-scaling-stroke; }
+.build-route .pin.mid { opacity: 0; animation: rise 260ms var(--ease) 900ms forwards; }
+.build-route .pin.end { opacity: 0; animation: rise 260ms var(--ease) 1850ms forwards; }
+.building h3 { display: flex; gap: 12px; align-items: center; justify-content: center; margin: 4px 0 0; font-size: 1.6rem; font-weight: 500; letter-spacing: -.02em; }
+.building > img { width: min(300px, 70%); }
+.build-steps { list-style: none; padding: 0; margin: 4px 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 20px; font-size: .82rem; }
+.build-steps li { margin: 0; color: var(--muted); display: flex; align-items: center; gap: 6px; transition: color var(--t-ui) var(--ease); }
+.build-steps li::before { content: ""; width: 9px; height: 9px; border-radius: 50%; border: 1px solid var(--line-strong); transition: background-color var(--t-ui) var(--ease), border-color var(--t-ui) var(--ease); }
+.build-steps li.doing { color: var(--travel-ink); font-weight: 600; }
+.build-steps li.doing::before { border-color: var(--travel-forest); }
+.build-steps li.done { color: var(--sage-text); }
+.build-steps li.done::before { background: var(--travel-sage); border-color: var(--sage-text); }
+
+/* ------------------------------------------------------------- 2 · EXPLORE */
+/* trip bar and the three destinations across the top; the map on the left;
+   the planner sits directly above the day plan it edits */
+.explore {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(320px, 1fr);
+  grid-template-rows: auto auto auto 1fr;
+  grid-template-areas: "bar bar" "picks picks" "map say" "map list";
+}
+.trip-bar { grid-area: bar; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; padding: 18px 24px; border-bottom: 1px solid var(--travel-line); }
+.tb-title { flex: 1 1 260px; min-width: 0; }
+.tb-title h3 { margin: 0; font-size: clamp(1.4rem, 1.1rem + 1vw, 1.9rem); font-weight: 500; letter-spacing: -.025em; }
+.tb-title .facts { margin: 2px 0 0; font-size: .8rem; color: var(--ink-2); }
+.trip-bar .budget { display: grid; grid-template-columns: auto 1fr; gap: 0 10px; align-items: baseline; text-align: left; border: 1px solid transparent; background: none; border-radius: 2px; padding: 6px 10px; min-width: 240px; transition: border-color var(--t-ui) var(--ease), background-color var(--t-ui) var(--ease); }
+.trip-bar .budget:hover { border-color: var(--travel-line); background: var(--travel-paper); }
+.b-num { font-family: var(--serif); font-size: 1.35rem; font-weight: 500; letter-spacing: -.02em; color: var(--travel-ink); white-space: nowrap; }
+.b-num.flash { animation: flash 900ms var(--ease); }
+.b-of { font-size: .72rem; color: var(--muted); }
+.b-track { grid-column: 1 / -1; height: 3px; margin-top: 8px; background: var(--paper-3); overflow: hidden; }
+.b-track i { display: block; height: 100%; background: var(--travel-forest); transition: width 480ms var(--ease), background-color var(--t-ui) var(--ease); }
+.budget.over .b-track i { background: var(--travel-terracotta); }
+.budget.over .b-num { color: var(--terra-text); }
+.tb-actions { display: flex; gap: 8px; align-items: center; }
+
+.planner { grid-area: say; padding: 18px 22px; border-bottom: 1px solid var(--travel-line-soft); background: var(--travel-paper); }
+.planner .say { font-size: .95rem; }
+.planner.empty .say > p:first-child, .planner.error .say > p:first-child { color: var(--terra-text); }
+/* budget/time conflict: the gap in one line, then a few clear fixes */
+.fixes { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; margin: 12px 0 6px; }
+.fix { display: grid; gap: 2px; text-align: left; border: 1px solid var(--travel-line); background: var(--travel-paper-light); border-radius: 2px; padding: 10px 12px; color: var(--travel-ink); transition: border-color var(--t-ui) var(--ease), background-color var(--t-ui) var(--ease); }
+.fix:hover { border-color: var(--travel-ink); background: var(--mustard-soft); }
+.fix b { font-size: .86rem; }
+.fix span { font-size: .74rem; color: var(--ink-2); line-height: 1.35; }
+.fix em { font-style: normal; font-family: var(--serif); font-size: 1.05rem; color: var(--travel-forest); }
+.why-cost summary { cursor: pointer; font-size: .78rem; color: var(--link); }
+.why-cost p { font-size: .78rem; margin: 6px 0 0; }
+
+.picks { grid-area: picks; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 1px solid var(--travel-line); }
+.pick { display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 12px 18px; border-right: 1px solid var(--travel-line-soft); transition: background-color var(--t-ui) var(--ease); }
+.pick:last-child { border-right: 0; }
+.pick img { width: 72px; height: 48px; object-fit: cover; border-radius: 2px; background: var(--scene); }
+.pick:hover img { transform: translateY(-3px); }
+.pick .rank { display: block; font-size: .58rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.pick b { font-family: var(--serif); font-weight: 500; font-size: 1.08rem; letter-spacing: -.01em; color: var(--travel-ink); }
+.pick p { margin: 0; font-size: .76rem; line-height: 1.35; color: var(--ink-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.pick small { font-size: .68rem; color: var(--muted); }
+.pick.best { background: var(--travel-paper); box-shadow: inset 0 -2px 0 var(--travel-terracotta); }
+.pick.best .rank { color: var(--terra-text); }
+.pick .link-btn { font-size: .76rem; white-space: nowrap; }
+
+.plan-map { grid-area: map; padding: 18px 22px 14px; border-right: 1px solid var(--travel-line-soft); }
+.day-switch { display: inline-flex; gap: 0; margin-bottom: 12px; border: 1px solid var(--line-strong); border-radius: 2px; overflow: hidden; }
+.day-switch button { display: inline-flex; align-items: center; gap: 8px; border: 0; background: transparent; padding: 7px 16px; font-size: .8rem; font-weight: 600; transition: background-color var(--t-ui) var(--ease), color var(--t-ui) var(--ease); }
+.day-switch button + button { border-left: 1px solid var(--line-strong); }
+.day-switch button[aria-pressed="true"] { background: var(--travel-forest); color: var(--travel-paper-light); }
+.dd { width: 9px; height: 9px; border-radius: 50%; border: 1px solid var(--travel-ink); }
+.dd.d1 { background: var(--day1); } .dd.d2 { background: var(--day2-fill); }
+.map-pane { position: relative; border-radius: 2px; overflow: hidden; background: var(--map-bg); border: 1px solid var(--travel-line-soft); }
+.map-canvas { position: relative; width: 100%; aspect-ratio: 1000 / 700; container-type: inline-size; }
+.map-canvas > img, .map-canvas > svg.routes { position: absolute; inset: 0; width: 100%; height: 100%; }
+.map-key { margin: 8px 0 0; font-size: .7rem; color: var(--muted); }
+.routes path { fill: none; stroke-linecap: round; transition: opacity var(--t-ui) var(--ease), stroke-width var(--t-ui) var(--ease); }
+.routes .seg { stroke-width: 3; stroke-dasharray: 2 9; vector-effect: non-scaling-stroke; }
+.routes .seg.hot { stroke-width: 4.4; stroke-dasharray: none; }
+.routes .seg.changed { animation: dashmove 1.2s linear 2; }
+.map-label { position: absolute; transform: translate(-50%, 0); font-family: var(--sans); font-weight: 600; font-size: clamp(8px, 1.3cqw, 12px); letter-spacing: .16em; text-transform: uppercase; color: var(--travel-ink); pointer-events: none; white-space: nowrap; text-shadow: 0 0 4px var(--map-bg), 0 0 3px var(--map-bg); }
+.map-label.place { font-family: var(--serif); font-weight: 500; letter-spacing: .06em; font-size: clamp(10px, 2cqw, 18px); }
+/* markers: day colour, number, a hairline ring; the selected stop settles slightly larger (04 · map / itinerary) */
+.marker { position: absolute; transform: translate(-50%, -50%); width: clamp(22px, 3.6cqw, 30px); height: clamp(22px, 3.6cqw, 30px); border: 1px solid var(--travel-ink); display: grid; place-items: center; font-weight: 700; font-size: clamp(10px, 1.45cqw, 12px); color: var(--travel-paper-light); padding: 0; background: var(--travel-paper-light); border-radius: 50%; z-index: 2; font-family: var(--sans);
+  transition: transform var(--t-ui-slow) var(--ease), box-shadow var(--t-ui) var(--ease); }
+.marker.k-stay { border-radius: 3px; }
+.marker.d1 { background: var(--day1); }
+.marker.d2 { background: var(--day2-fill); color: var(--travel-ink); }
+.marker.both { background: var(--travel-mustard); color: var(--travel-ink); }
+.marker.optional { border-style: dashed; }
+.marker:hover, .marker:focus-visible { z-index: 5; transform: translate(-50%, -50%) scale(1.1); }
+.marker.active { z-index: 6; box-shadow: 0 0 0 3px var(--travel-paper-light), 0 0 0 4px var(--travel-ink); transform: translate(-50%, -50%) scale(1.18); animation: settle var(--t-ui-slow) var(--ease); }
+.marker.pulse { animation: pulse 1.1s var(--ease) 1; }
+.map-canvas.arrive .marker { animation: marker-in 320ms var(--ease) both; }
+@keyframes marker-in { from { opacity: 0; transform: translate(-50%, calc(-50% - 8px)); } to { opacity: 1; transform: translate(-50%, -50%); } }
+.map-error { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 20px 20px 80px; z-index: 9;
+  background: var(--deco-hills) center bottom / 100% auto no-repeat, var(--travel-paper); }
+.map-error .box { max-width: 300px; }
+.map-error h3 { font-size: 1.4rem; font-weight: 500; margin-bottom: 4px; }
+
+.plan-list { grid-area: list; padding: 16px 22px 20px; }
+.itin { list-style: none; margin: 0; padding: 0; }
+.itin > li { margin: 0; }
+.from-stay { font-size: .74rem; color: var(--muted); font-style: italic; padding: 2px 0 6px 2px; }
+.leg { display: block; font-size: .68rem; color: var(--muted); padding: 2px 0 4px 40px; position: relative; }
+.leg::before { content: ""; position: absolute; left: 14px; top: 0; bottom: 0; width: 1px; background: repeating-linear-gradient(var(--travel-mustard) 0 2px, transparent 2px 6px); }
+.leg.far { color: var(--travel-ink); font-weight: 600; }
+/* a stop: a ruled row, not a card; the selected row takes a soft colour fill */
+.stop { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; gap: 12px; align-items: center; width: 100%; text-align: left; padding: 10px 10px; border: 0; border-top: 1px solid var(--travel-line-soft); background: transparent; border-radius: 0; color: var(--travel-ink);
+  transition: background-color var(--t-ui) var(--ease), box-shadow var(--t-ui) var(--ease); }
+.stop:hover { background: var(--travel-paper); }
+.stop.active { background: var(--mustard-soft); box-shadow: inset 2px 0 0 var(--travel-ink); }
+.stop.just-changed { animation: glow 1.4s var(--ease); }
+.stop-li.open .stop { background: var(--travel-paper); }
+.sn { width: 26px; height: 26px; border: 1px solid var(--travel-ink); border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 11px; color: var(--travel-paper-light); }
+.sn.k-stay { border-radius: 3px; }
+.sn.d1 { background: var(--day1); } .sn.d2 { background: var(--day2-fill); color: var(--travel-ink); } .sn.both { background: var(--travel-mustard); color: var(--travel-ink); }
+.sn.optional { border-style: dashed; }
+.s-main { display: grid; min-width: 0; }
+.sname { font-weight: 600; font-size: .9rem; line-height: 1.3; }
+.smeta { font-size: .72rem; color: var(--ink-2); }
+.s-flags { display: flex; flex-direction: column; gap: 3px; align-items: flex-end; }
+/* detail on demand — opens in place (height eases in prototype.js), one reason first */
+.stop-detail { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 14px; padding: 12px 10px 14px; background: var(--travel-paper); margin-bottom: 4px; }
+.stop-detail > img { width: 84px; height: 56px; object-fit: cover; border-radius: 2px; transition: transform var(--t-ui-slow) var(--ease); }
+.stop-detail:hover > img { transform: translateY(-3px); }
+.why1 { margin: 0 0 6px; font-family: var(--serif); font-size: 1rem; line-height: 1.38; }
+.why-all { margin: 0 0 6px; padding-left: 1.1em; font-size: .8rem; }
+.why-all li { margin-bottom: 2px; }
+.sd-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.sd-actions .btn.on { background: var(--travel-forest); color: var(--travel-paper-light); border-color: var(--travel-forest); }
+.alts { display: grid; gap: 4px; margin: 4px 0; }
+.alt { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 8px 0; border-top: 1px solid var(--travel-line-soft); }
+.alt img { width: 52px; height: 36px; object-fit: cover; border-radius: 2px; }
+.alt b { display: block; font-size: .82rem; line-height: 1.25; }
+.alt > div > span { display: block; font-size: .72rem; color: var(--ink-2); }
+.itin + .tiny-note { margin-top: 10px; }
+
+/* ------------------------------------------------------------- 3 · REVIEW */
+.review { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: clamp(24px, 4vw, 56px); padding: clamp(20px, 3.5vw, 48px); align-items: start; }
+.rv-art { margin: 0; border-radius: 3px; overflow: hidden; background: var(--scene); }
+.rv-art img { width: 100%; }
+.rv-body h3 { font-size: clamp(1.9rem, 1.3rem + 1.8vw, 2.8rem); font-weight: 500; letter-spacing: -.03em; margin: 6px 0 16px; outline: none; }
+.rv-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 24px; margin: 0 0 18px; padding: 14px 0; border-top: 1px solid var(--travel-ink); border-bottom: 1px solid var(--travel-line); }
+.rv-facts > div { margin: 0; }
+.rv-facts dt { font-size: .6rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--travel-forest); }
+.rv-facts dd { margin: 2px 0 0; font-size: .92rem; }
+.rv-days { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.rv-days h4 { color: var(--travel-forest); }
+.rv-days ul { padding-left: 1.1em; font-size: .88rem; margin: 0; }
+.rv-days li { margin-bottom: 3px; }
+.rv-cost { margin: 18px 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.rv-cost .b-num { font-size: 1.8rem; }
+.cost-more { flex-basis: 100%; font-size: .8rem; }
+.cost-more summary { cursor: pointer; color: var(--link); }
+.cost-more[open] table { animation: unfold var(--t-ui-slow) var(--ease); }
+.cost-more table { width: 100%; max-width: 440px; border-collapse: collapse; margin-top: 6px; }
+.cost-more td { padding: 4px 0; border-bottom: 1px solid var(--line); }
+.cost-more td + td { text-align: right; white-space: nowrap; }
+.rv-notes { border-left: 2px solid var(--travel-mustard); padding: 4px 0 4px 16px; font-size: .86rem; }
+.rv-notes h4 { margin-bottom: 4px; color: var(--travel-ink); }
+.rv-notes ul { margin: 0; padding-left: 1.1em; }
+
+/* ------------------------------------------------------------- the case study's state specimens reuse these components */
+.spec-say { font-size: .86rem; }
+.spec-say .fixes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.spec-say .alt { grid-template-columns: 0 minmax(0, 1fr) auto; }
+.spec-say .build-steps { justify-content: flex-start; }
+
+/* ------------------------------------------------------------- responsive: one natural vertical flow */
+@media (max-width: 900px) {
+  .tell, .review { grid-template-columns: minmax(0, 1fr); }
+  .explore { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-template-areas: "bar" "say" "map" "list" "picks"; }
+  .plan-map { border-right: 0; }
+  .picks { grid-template-columns: minmax(0, 1fr); border-top: 1px solid var(--travel-line); border-bottom: 0; }
+  .pick { border-right: 0; border-bottom: 1px solid var(--travel-line-soft); }
+  .pick p { -webkit-line-clamp: unset; display: block; }
+  .notes dl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .app-top { padding: 12px 14px; }
+  .steps { margin: 0; width: 100%; justify-content: space-between; }
+  .steps li + li::before { width: 12px; margin: 0 3px; }
+  .steps button { font-size: .74rem; gap: 6px; }
+  .steps li.on button::after { left: 28px; }
+  .trip-bar, .planner, .plan-map, .plan-list { padding-left: 14px; padding-right: 14px; }
+  .trip-bar .budget { min-width: 0; flex: 1 1 100%; padding-left: 0; }
+  .tb-actions { flex: 1 1 100%; justify-content: space-between; }
+  .rv-facts, .rv-days { grid-template-columns: minmax(0, 1fr); }
+  .stop-detail { grid-template-columns: minmax(0, 1fr); }
+  .stop-detail > img { display: none; }
+  .alt { grid-template-columns: minmax(0, 1fr) auto; }
+  .alt img { display: none; }
+  .pick { grid-template-columns: 56px minmax(0, 1fr); }
+  .pick img { width: 56px; }
+  .pick .link-btn { grid-column: 2; justify-self: start; }
+}

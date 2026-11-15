@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1000" viewBox="0 0 1440 1000">
+<title>Illustration style</title><desc>Illustration style and line weight reference</desc>
+<defs>
+ <pattern id="grain" width="120" height="120" patternUnits="userSpaceOnUse">
+  <circle cx="12" cy="18" r="0.8" fill="#8C826F" opacity=".13"/>
+  <circle cx="73" cy="42" r="0.65" fill="#8C826F" opacity=".12"/>
+  <circle cx="38" cy="94" r="0.7" fill="#8C826F" opacity=".10"/>
+  <path d="M92 12l3 1M20 65l4 -1M104 83l3 1" stroke="#8C826F" stroke-width=".6" opacity=".10"/>
+ </pattern>
+ <style>
+  .display{font-family:'Fraunces','Georgia',serif;font-weight:500;letter-spacing:-1.6px}
+  .body{font-family:'Epilogue','Arial',sans-serif}
+  .eyebrow{font-family:'Epilogue','Arial',sans-serif;font-size:13px;letter-spacing:2px;font-weight:600}
+  .ink{fill:#292821}.muted{fill:#777468}
+  .stroke{stroke:#292821;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+  .fine{stroke:#292821;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+  .panel{fill:#FFFDF8;stroke:#D9D2C4;stroke-width:1}
+ </style>
+</defs>
+<rect width="100%" height="100%" fill="#F7F3EA"/>
+<rect width="100%" height="100%" fill="url(#grain)"/>
+
+<text x="72" y="76" class="eyebrow" fill="#465C48">ILLUSTRATION SYSTEM / 02</text>
+<text x="72" y="145" class="display ink" font-size="60">Illustration, not cartoon</text>
+<text x="74" y="184" class="body muted" font-size="18">Use restrained shapes, quiet character details and landscape-led storytelling.</text>
+<rect x="72" y="230" width="390" height="420" rx="3" class="panel"/><text x="96" y="270" class="eyebrow" fill="#465C48">LANDSCAPE</text><rect x="510" y="230" width="390" height="420" rx="3" class="panel"/><text x="534" y="270" class="eyebrow" fill="#465C48">ARCHITECTURE</text><rect x="948" y="230" width="390" height="420" rx="3" class="panel"/><text x="972" y="270" class="eyebrow" fill="#465C48">TRAVEL OBJECTS</text>
+<circle cx="360" cy="365" r="36" fill="#D9B75D"/>
+<path d="M96 520 Q180 405 260 475 Q330 380 438 500 L438 610 L96 610Z" fill="#9BAE91"/>
+<path d="M96 555 Q205 490 286 540 Q360 485 438 550 L438 610 L96 610Z" fill="#465C48"/>
+<path d="M112 575 Q205 535 290 572" fill="none" stroke="#FFFDF8" stroke-width="3" opacity=".8"/>
+<path d="M180 472 l14 -30 14 30 M194 442v-24" stroke="#292821" stroke-width="2" fill="none" stroke-linecap="round"/>
+<text x="96" y="626" class="body muted" font-size="12">Layered, simplified terrain; no heavy contouring.</text>
+
+<path d="M550 450 L700 350 L850 450Z" fill="#C87555"/>
+<rect x="570" y="450" width="260" height="155" fill="#D9B89B"/>
+<rect x="600" y="485" width="48" height="70" fill="#F7F3EA"/>
+<rect x="690" y="485" width="48" height="70" fill="#F7F3EA"/>
+<rect x="765" y="485" width="42" height="120" fill="#465C48"/>
+<path d="M555 450 Q700 430 845 450" stroke="#292821" stroke-width="1.8" fill="none"/>
+<text x="534" y="626" class="body muted" font-size="12">Architectural silhouettes; selective structural lines.</text>
+
+<path d="M1010 405 Q1010 365 1050 365 L1140 365 Q1180 365 1180 405 L1165 560 Q1160 585 1135 585 L1055 585 Q1030 585 1025 560Z" fill="#A8C2C5" stroke="#292821" stroke-width="2"/>
+<path d="M1050 365 Q1050 320 1095 320 Q1140 320 1140 365" class="stroke"/>
+<path d="M1035 430 Q1095 450 1165 430" stroke="#FFFDF8" stroke-width="4" fill="none"/>
+<circle cx="1215" cy="520" r="44" fill="#D9B75D" stroke="#292821" stroke-width="2"/>
+<path d="M1190 520h50M1215 495v50" stroke="#292821" stroke-width="1.5"/>
+<text x="972" y="626" class="body muted" font-size="12">Objects feel observed, not emoji-like.</text>
+
+<text x="72" y="724" class="eyebrow" fill="#465C48">LINE, SHAPE & TEXTURE SPECIFICATION</text>
+<line x1="72" y1="770" x2="280" y2="770" stroke="#292821" stroke-width="2.2" stroke-linecap="round"/>
+<text x="300" y="775" class="body ink" font-size="14">Primary outline: 2–2.4 px at 1440 px canvas</text>
+<line x1="72" y1="812" x2="280" y2="812" stroke="#292821" stroke-width="1.2" stroke-linecap="round"/>
+<text x="300" y="817" class="body ink" font-size="14">Detail line: 1–1.3 px; use sparingly</text>
+<rect x="72" y="850" width="110" height="28" fill="#C87555"/><rect x="194" y="850" width="110" height="28" fill="#9BAE91"/><rect x="316" y="850" width="110" height="28" fill="#D9B75D"/><rect x="438" y="850" width="110" height="28" fill="#A8C2C5"/>
+<text x="580" y="870" class="body muted" font-size="14">Flat, muted pigment blocks + very subtle paper grain. Avoid gradients and thick comic outlines.</text>
+
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 180" aria-hidden="true"><title></title><defs>
+  <filter id="pig" x="-3%" y="-3%" width="106%" height="106%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="37" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="41" result="m"/>
+    <feColorMatrix in="m" type="matrix" values="0 0 0 0 0.18  0 0 0 0 0.15  0 0 0 0 0.1  0.17 0 0 0 -0.065" result="mc"/>
+    <feComposite in="mc" in2="d" operator="in" result="mi"/>
+    <feMerge><feMergeNode in="d"/><feMergeNode in="mi"/></feMerge>
+  </filter>
+  <filter id="hand" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="39" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.1" xChannelSelector="R" yChannelSelector="G"/></filter>
+</defs><g filter="url(#pig)" fill="#A8C2C5" opacity="0.85"><path d="M0,120 C150,120 150,40 300,40 C500,40 500,96 700,96 C880,96 880,30 1060,30 C1230,30 1230,80 1400,80 C1500,80 1500,120 1600,120 L1600,180 L0,180 Z"/></g><g filter="url(#pig)" fill="#9BAE91"><path d="M0,150 C100,150 100,104 200,104 C380,104 380,140 560,140 C740,140 740,92 920,92 C1100,92 1100,132 1280,132 C1400,132 1400,110 1520,110 C1560,110 1560,150 1600,150 L1600,180 L0,180 Z"/></g><g filter="url(#pig)" fill="#465C48"><path d="M560,100 C567.8,116 571.2,132 562.2,136.8 L560.9,140 L559.1,140 L557.8,136.8 C548.8,132 552.2,116 560,100 Z"/><path d="M578,113 C583.9,125 586.4,137 579.7,140.6 L578.7,143 L577.3,143 L576.3,140.6 C569.6,137 572.1,125 578,113 Z"/><path d="M1240,87 C1248.6,104.6 1252.3,122.2 1242.5,127.5 L1241,131 L1239,131 L1237.5,127.5 C1227.7,122.2 1231.4,104.6 1240,87 Z"/></g></svg>
